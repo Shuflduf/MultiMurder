@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://b3kndvg1opr6m"]
+
+[ext_resource type="Texture2D" uid="uid://cepqbljkg6yn7" path="res://icon.svg" id="1_6em2n"]
+[ext_resource type="Script" path="res://scripts/move_component.gd" id="2_2ophi"]
+[ext_resource type="Script" path="res://scripts/move_input_component.gd" id="3_uk2jq"]
+[ext_resource type="Script" path="res://scripts/shoot_component.gd" id="4_rai5e"]
+[ext_resource type="Script" path="res://scripts/spawner_component.gd" id="5_wc8y1"]
+[ext_resource type="PackedScene" uid="uid://cp13ouia7wa1w" path="res://scenes/bullet.tscn" id="5_yklxn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6dq78"]
+size = Vector2(128, 128)
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6em2n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6dq78")
+
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("2_2ophi")
+actor = NodePath("..")
+speed = 400
+top_down = true
+
+[node name="MoveInputComponent" type="Node" parent="." node_paths=PackedStringArray("movement_component")]
+script = ExtResource("3_uk2jq")
+movement_component = NodePath("../MoveComponent")
+top_down = true
+
+[node name="ShootComponent" type="Node" parent="." node_paths=PackedStringArray("spawn_component", "actor")]
+script = ExtResource("4_rai5e")
+spawn_component = NodePath("../Gun/SpawnerComponent")
+actor = NodePath("..")
+bullet = ExtResource("5_yklxn")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Gun" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Gun"]
+position = Vector2(69.83, 0)
+scale = Vector2(0.606719, 0.390625)
+texture = ExtResource("1_6em2n")
+
+[node name="SpawnerComponent" type="Node2D" parent="Gun"]
+position = Vector2(69.83, 0)
+script = ExtResource("5_wc8y1")

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddsu0qklpr2km"]
+
+[ext_resource type="Texture2D" uid="uid://cepqbljkg6yn7" path="res://icon.svg" id="1_v0h30"]
+[ext_resource type="PackedScene" uid="uid://b3kndvg1opr6m" path="res://scenes/player.tscn" id="2_e25f8"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Backround" type="Sprite2D" parent="."]
+z_index = -3120
+scale = Vector2(54.1094, 54.1094)
+texture = ExtResource("1_v0h30")
+
+[node name="Player" parent="." instance=ExtResource("2_e25f8")]
