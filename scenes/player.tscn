@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3kndvg1opr6m"]
+[gd_scene load_steps=9 format=3 uid="uid://b3kndvg1opr6m"]
 
 [ext_resource type="Texture2D" uid="uid://cepqbljkg6yn7" path="res://icon.svg" id="1_6em2n"]
-[ext_resource type="Script" path="res://scripts/move_component.gd" id="2_2ophi"]
-[ext_resource type="Script" path="res://scripts/move_input_component.gd" id="3_uk2jq"]
-[ext_resource type="Script" path="res://scripts/shoot_component.gd" id="4_rai5e"]
-[ext_resource type="Script" path="res://scripts/spawner_component.gd" id="5_wc8y1"]
+[ext_resource type="Script" path="res://scripts/move_c.gd" id="2_2ophi"]
+[ext_resource type="Script" path="res://scripts/move_input_c.gd" id="3_uk2jq"]
+[ext_resource type="Script" path="res://scripts/shoot_c.gd" id="4_rai5e"]
+[ext_resource type="Script" path="res://scripts/spawner_c.gd" id="5_wc8y1"]
 [ext_resource type="PackedScene" uid="uid://cp13ouia7wa1w" path="res://scenes/bullet.tscn" id="5_yklxn"]
+[ext_resource type="Script" path="res://scripts/Gun.gd" id="6_8gjan"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6dq78"]
 size = Vector2(128, 128)
@@ -29,15 +30,11 @@ script = ExtResource("3_uk2jq")
 movement_component = NodePath("../MoveComponent")
 top_down = true
 
-[node name="ShootComponent" type="Node" parent="." node_paths=PackedStringArray("spawn_component", "actor")]
-script = ExtResource("4_rai5e")
-spawn_component = NodePath("../Gun/SpawnerComponent")
-actor = NodePath("..")
-bullet = ExtResource("5_yklxn")
-
 [node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
 
 [node name="Gun" type="Node2D" parent="."]
+script = ExtResource("6_8gjan")
 
 [node name="Sprite2D" type="Sprite2D" parent="Gun"]
 position = Vector2(69.83, 0)
@@ -47,3 +44,9 @@ texture = ExtResource("1_6em2n")
 [node name="SpawnerComponent" type="Node2D" parent="Gun"]
 position = Vector2(69.83, 0)
 script = ExtResource("5_wc8y1")
+
+[node name="ShootComponent" type="Node" parent="Gun" node_paths=PackedStringArray("spawn_component", "actor")]
+script = ExtResource("4_rai5e")
+spawn_component = NodePath("../SpawnerComponent")
+actor = NodePath("../..")
+bullet = ExtResource("5_yklxn")

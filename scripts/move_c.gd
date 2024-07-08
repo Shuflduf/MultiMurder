@@ -6,7 +6,7 @@ extends Node
 @export var speed : int
 @export var top_down := false
 
-func _physics_process(_delta):
+func _process(_delta):
 	if !top_down:
 		actor.velocity.x = direction.x * speed
 		actor.velocity.y = direction.y

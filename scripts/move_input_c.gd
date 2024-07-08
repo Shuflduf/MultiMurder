@@ -5,7 +5,7 @@ extends Node
 @export var movement_component : MoveComponent
 @export var top_down := false
 
-func _physics_process(_delta):
+func _process(_delta):
 	if !top_down:
 		var input_axis = Input.get_axis("left","right")
 		movement_component.direction.x = input_axis

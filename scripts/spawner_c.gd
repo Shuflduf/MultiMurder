@@ -3,7 +3,7 @@ extends Node2D
 
 var scene: PackedScene
 
-func spawn(global_spawn_position: Vector2 = global_position, parent: Node = get_tree().current_scene) -> Node:
+func spawn(global_spawn_position: Vector2 = global_position, parent: Node = get_tree().current_scene):
 	assert(scene is PackedScene, "Error: The scene export was never set on this spawner component.")
 
 	var instance = scene.instantiate()
@@ -12,4 +12,4 @@ func spawn(global_spawn_position: Vector2 = global_position, parent: Node = get_
 	
 	instance.global_position = global_spawn_position
 	
-	return instance
+	#return instance
