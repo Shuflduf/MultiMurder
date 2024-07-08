@@ -1,12 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b3kndvg1opr6m"]
+[gd_scene load_steps=8 format=3 uid="uid://b3kndvg1opr6m"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_2vvyq"]
 [ext_resource type="Texture2D" uid="uid://cepqbljkg6yn7" path="res://icon.svg" id="1_6em2n"]
 [ext_resource type="Script" path="res://scripts/move_c.gd" id="2_2ophi"]
 [ext_resource type="Script" path="res://scripts/move_input_c.gd" id="3_uk2jq"]
-[ext_resource type="Script" path="res://scripts/spawner_c.gd" id="5_wc8y1"]
-[ext_resource type="PackedScene" uid="uid://cp13ouia7wa1w" path="res://scenes/bullet.tscn" id="5_yklxn"]
-[ext_resource type="Script" path="res://scripts/Gun.gd" id="6_8gjan"]
+[ext_resource type="PackedScene" uid="uid://30bi6olkqfgu" path="res://scenes/guns/gun_template.tscn" id="5_vgh3t"]
+[ext_resource type="Script" path="res://scripts/guns/shotgun.gd" id="6_1tqjj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6dq78"]
 size = Vector2(128, 128)
@@ -34,19 +33,12 @@ top_down = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
+position_smoothing_speed = 10.0
 
-[node name="Gun" type="Node2D" parent="."]
-script = ExtResource("6_8gjan")
-bullet = ExtResource("5_yklxn")
-fire_speed = 0.01
-automatic = true
+[node name="Shotgun" parent="." instance=ExtResource("5_vgh3t")]
+script = ExtResource("6_1tqjj")
+pellet_count = 5
+spread = 60
+neat_spread = true
 
-[node name="barrel" type="Node2D" parent="Gun"]
-position = Vector2(70, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="Gun/barrel"]
-scale = Vector2(0.606719, 0.390625)
-texture = ExtResource("1_6em2n")
-
-[node name="SpawnerComponent" type="Node2D" parent="Gun/barrel"]
-script = ExtResource("5_wc8y1")
+[editable path="Shotgun"]
