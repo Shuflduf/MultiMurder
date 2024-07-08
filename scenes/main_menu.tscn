@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmf2sb3axkhr0"]
+[gd_scene load_steps=8 format=3 uid="uid://cmf2sb3axkhr0"]
 
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_01g3l"]
 [ext_resource type="Shader" path="res://resources/shaders/mainmenu.gdshader" id="1_874np"]
 [ext_resource type="Texture2D" uid="uid://cepqbljkg6yn7" path="res://icon.svg" id="1_mxpw8"]
 [ext_resource type="LabelSettings" uid="uid://saklthotqebo" path="res://resources/heading1.tres" id="2_vyqso"]
@@ -28,6 +29,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_01g3l")
+next_scene = "res://scenes/main.tscn"
 
 [node name="Panel2" type="Panel" parent="."]
 layout_mode = 1
@@ -65,14 +68,16 @@ layout_mode = 2
 [node name="SpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Host" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_jw5ke")
 theme_override_font_sizes/font_size = 31
 text = "Host"
 
-[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Join" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_jw5ke")
 theme_override_font_sizes/font_size = 31
 text = "Join"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Join" to="." method="_on_join_pressed"]
