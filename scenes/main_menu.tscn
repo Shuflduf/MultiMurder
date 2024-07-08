@@ -65,11 +65,12 @@ label_settings = ExtResource("2_vyqso")
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
+[node name="Port" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 min_value = 25.0
 max_value = 9999.0
 value = 9999.0
+rounded = true
 
 [node name="Host" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2

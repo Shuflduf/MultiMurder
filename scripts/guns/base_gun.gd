@@ -20,19 +20,17 @@ var ammo: int:
 
 signal fired
 
-func _ready() -> void:
-	synchronizer = get_parent().get_parent().find_child("MultiplayerSynchronizer", true, false)
-	
-	if !synchronizer.is_multiplayer_authority():
-		return
-	ammo = clip
+func look_at_mouse():
 	look_at(get_global_mouse_position())
 
-func _unhandled_input(event: InputEvent) -> void:
-	if !synchronizer.is_multiplayer_authority():
-		return
-	if event is InputEventMouseMotion:
-		look_at(get_global_mouse_position())
+func _ready() -> void:	
+	ammo = clip
+
+#func _unhandled_input(event: InputEvent) -> void:
+	##if !synchronizer.is_multiplayer_authority():
+		##return
+	#if event is InputEventMouseMotion:
+		#look_at(get_global_mouse_position())
 
 func shoot():
 	spawn_bullet(spawner.spawn(bullet))
@@ -43,8 +41,8 @@ func spawn_bullet(new_bullet: Node):
 
 
 func _process(delta: float) -> void:
-	if !synchronizer.is_multiplayer_authority():
-		return
+	#if !synchronizer.is_multiplayer_authority():
+		#return
 	if shoot_cooldown >= 0:
 		shoot_cooldown -= delta
 	else:

@@ -6,3 +6,4 @@ enum gameType {
 }
 
 var current_type : gameType
+var port: int

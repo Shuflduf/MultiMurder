@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var weapon_parent: Node2D = $Weapon
 @onready var hud: Control = $CanvasLayer/HUD
 @onready var name_label: Label = $Name
+@onready var move_c: MoveComponent = $MoveComponent
 
 @export var synchronizer: MultiplayerSynchronizer
 @export var weapons: Array[PackedScene]
@@ -24,7 +25,11 @@ var current_weapon: Gun:
 
 func _process(_delta: float) -> void:
 	camera.position = get_local_mouse_position() / 3
-
+	if synchronizer.is_multiplayer_authority():
+		var input_dir = Input.get_vector("left","right","up","down")
+		move_c.direction = input_dir
+		move_c.move()
+		current_weapon.look_at_mouse()
 
 func _ready() -> void:
 	name_label.text = name
@@ -40,6 +45,8 @@ func _ready() -> void:
 	weapon_index = 0
 		
 func _unhandled_input(event: InputEvent) -> void:
+	
+		
 	if event.is_action_pressed("switch_1"):
 		weapon_index = 0
 	elif event.is_action_pressed("switch_2"):
