@@ -10,7 +10,9 @@ extends Node2D
 @onready var barrel: Node2D = $barrel
 @onready var spawner: SpawnerComponent = $barrel/SpawnerComponent
 
-var synchronizer: MultiplayerSynchronizer
+var player: Player :
+	get:
+		return get_parent().get_parent()
 
 var shoot_cooldown = fire_speed
 var ammo: int:
@@ -26,23 +28,18 @@ func look_at_mouse():
 func _ready() -> void:	
 	ammo = clip
 
-#func _unhandled_input(event: InputEvent) -> void:
-	##if !synchronizer.is_multiplayer_authority():
-		##return
-	#if event is InputEventMouseMotion:
-		#look_at(get_global_mouse_position())
-
 func shoot():
 	spawn_bullet(spawner.spawn(bullet))
 	ammo -= 1
 	
 func spawn_bullet(new_bullet: Node):
-	get_tree().root.add_child(new_bullet)
+	player.bullet_parent.add_child(new_bullet)
+	player.bullets.append(player.bullet_parent.get_child(-1))
 
 
 func _process(delta: float) -> void:
-	#if !synchronizer.is_multiplayer_authority():
-		#return
+	if !player.synchronizer.is_multiplayer_authority():
+		return
 	if shoot_cooldown >= 0:
 		shoot_cooldown -= delta
 	else:

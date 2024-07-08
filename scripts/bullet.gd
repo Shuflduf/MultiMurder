@@ -19,3 +19,6 @@ func update_direction(new_rot: float):
 		cos(new_rot),
 		sin(new_rot)
 	)
+
+func _process(delta: float) -> void:
+	move_component.move()

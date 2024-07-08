@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 @onready var camera: Camera2D = $Camera2D
@@ -5,9 +6,11 @@ extends CharacterBody2D
 @onready var hud: Control = $CanvasLayer/HUD
 @onready var name_label: Label = $Name
 @onready var move_c: MoveComponent = $MoveComponent
+@onready var bullet_parent: Node2D = $BulletParent
 
 @export var synchronizer: MultiplayerSynchronizer
 @export var weapons: Array[PackedScene]
+@export var bullets = []
 
 @export var weapon_rot: float:
 	set(value):
@@ -31,10 +34,10 @@ var current_weapon: Gun:
 	get: 
 		return weapon_parent.get_child(weapon_index)
 
+
 func _process(_delta: float) -> void:
 	camera.position = get_local_mouse_position() / 3
 	if synchronizer.is_multiplayer_authority():
-		print(weapon_rot)
 		var input_dir = Input.get_vector("left","right","up","down")
 		move_c.direction = input_dir
 		move_c.move()
