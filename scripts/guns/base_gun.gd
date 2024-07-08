@@ -4,6 +4,7 @@ extends Node2D
 @export var bullet: PackedScene
 @export_range(0.01, 2) var fire_speed = 0.2
 @export var clip = 6
+
 @export var reserve = 20
 
 @export var automatic = false
@@ -12,6 +13,12 @@ extends Node2D
 @onready var spawner: SpawnerComponent = $barrel/SpawnerComponent
 
 var shoot_cooldown = fire_speed
+var ammo = clip:
+	set(value):
+		ammo = value
+		fired.emit()
+
+signal fired
 
 func _ready() -> void:
 	look_at(get_global_mouse_position())
@@ -22,9 +29,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func shoot():
 	spawn_bullet(spawner.spawn(bullet))
+	ammo -= 1
 	
-func spawn_bullet(bullet: Node):
-	get_tree().root.add_child(bullet)
+func spawn_bullet(new_bullet: Node):
+	get_tree().root.add_child(new_bullet)
 
 
 func _process(delta: float) -> void:

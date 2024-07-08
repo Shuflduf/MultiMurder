@@ -33,6 +33,7 @@ func shoot():
 				
 		new_bullet.rotation = deg_to_rad(bullet_offset) + rotation
 		spawn_bullet(new_bullet)
+	ammo -= 1
 		
 func calculate_spread():
 	offset = (pellet_count - 1) / 2.0	

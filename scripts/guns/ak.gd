@@ -13,4 +13,5 @@ func shoot():
 	var bullet_offset = randf_range(-half_spread, half_spread)
 	new_bullet.rotation = deg_to_rad(bullet_offset) + rotation
 	spawn_bullet(new_bullet)
+	fired.emit()
 	

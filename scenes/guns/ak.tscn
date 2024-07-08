@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://b4321xovw1xhi"]
 
-[ext_resource type="PackedScene" uid="uid://30bi6olkqfgu" path="res://scenes/guns/gun_template.tscn" id="1_uhkmt"]
+[ext_resource type="PackedScene" uid="uid://30bi6olkqfgu" path="res://scenes/guns/base_gun.tscn" id="1_ffu0d"]
 [ext_resource type="Script" path="res://scripts/guns/ak.gd" id="2_j1cnl"]
 
-[node name="AK" instance=ExtResource("1_uhkmt")]
+[node name="AK" instance=ExtResource("1_ffu0d")]
 script = ExtResource("2_j1cnl")
 spread = 20
 fire_speed = 0.1

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://30bi6olkqfgu"]
 
-[ext_resource type="Script" path="res://scripts/guns/gun_template.gd" id="1_0qmv6"]
+[ext_resource type="Script" path="res://scripts/guns/base_gun.gd" id="1_0qmv6"]
 [ext_resource type="PackedScene" uid="uid://cp13ouia7wa1w" path="res://scenes/bullet.tscn" id="2_016uv"]
 [ext_resource type="Texture2D" uid="uid://cepqbljkg6yn7" path="res://icon.svg" id="3_qjo8k"]
 [ext_resource type="Script" path="res://scripts/spawner_c.gd" id="4_uu70u"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bybw21gfe5tog"]
 
-[ext_resource type="PackedScene" uid="uid://30bi6olkqfgu" path="res://scenes/guns/gun_template.tscn" id="1_ikc4v"]
+[ext_resource type="PackedScene" uid="uid://30bi6olkqfgu" path="res://scenes/guns/base_gun.tscn" id="1_ikc4v"]
 [ext_resource type="Script" path="res://scripts/guns/shotgun.gd" id="2_oaccg"]
 
 [node name="Shotgun" instance=ExtResource("1_ikc4v")]
