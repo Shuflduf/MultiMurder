@@ -39,7 +39,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		weapon_index = 1
 		
 func update_hud():
-	print(current_weapon)
 	hud.ammo = current_weapon.ammo
 	hud.clip = current_weapon.clip
 	hud.reserve = current_weapon.reserve

@@ -13,7 +13,7 @@ extends Node2D
 @onready var spawner: SpawnerComponent = $barrel/SpawnerComponent
 
 var shoot_cooldown = fire_speed
-var ammo = clip:
+var ammo: int:
 	set(value):
 		ammo = value
 		fired.emit()
@@ -21,6 +21,7 @@ var ammo = clip:
 signal fired
 
 func _ready() -> void:
+	ammo = clip
 	look_at(get_global_mouse_position())
 
 func _unhandled_input(event: InputEvent) -> void:
