@@ -13,6 +13,9 @@ extends Node2D
 
 var shoot_cooldown = fire_speed
 
+func _ready() -> void:
+	look_at(get_global_mouse_position())
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		look_at(get_global_mouse_position())

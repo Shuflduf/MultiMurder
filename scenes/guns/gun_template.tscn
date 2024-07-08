@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/spawner_c.gd" id="4_uu70u"]
 
 [node name="Gun" type="Node2D"]
+z_index = 10
 script = ExtResource("1_0qmv6")
 bullet = ExtResource("2_016uv")
 

@@ -3,10 +3,10 @@ extends Gun
 
 @export_range(0, 180) var spread = 20:
 	set(value):
-		half_spread = value / 2
+		half_spread = value / 2.0
 		spread = value
 	
-var half_spread = spread / 2
+var half_spread = spread / 2.0
 
 func shoot():
 	var new_bullet: Bullet = spawner.spawn(bullet)
