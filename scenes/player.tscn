@@ -38,6 +38,8 @@ position_smoothing_enabled = true
 [node name="Gun" type="Node2D" parent="."]
 script = ExtResource("6_8gjan")
 bullet = ExtResource("5_yklxn")
+fire_speed = 0.01
+automatic = true
 
 [node name="barrel" type="Node2D" parent="Gun"]
 position = Vector2(70, 0)
