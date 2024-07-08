@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var hud: Control = $CanvasLayer/HUD
 @onready var name_label: Label = $Name
 
+@export var synchronizer: MultiplayerSynchronizer
 @export var weapons: Array[PackedScene]
 
 var weapon_index = 0:
@@ -26,7 +27,11 @@ func _process(_delta: float) -> void:
 
 
 func _ready() -> void:
-	name_label.text = str(get_multiplayer_authority())
+	name_label.text = name
+	synchronizer.set_multiplayer_authority(str(name).to_int())
+	if synchronizer.is_multiplayer_authority():
+		camera.make_current()
+	
 	for gun in weapons:
 		weapon_parent.add_child(gun.instantiate())
 	for gun in weapon_parent.get_children():

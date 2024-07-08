@@ -4,13 +4,13 @@ extends Node2D
 @export var bullet: PackedScene
 @export_range(0.01, 2) var fire_speed = 0.2
 @export var clip = 6
-
 @export var reserve = 20
-
 @export var automatic = false
 
 @onready var barrel: Node2D = $barrel
 @onready var spawner: SpawnerComponent = $barrel/SpawnerComponent
+
+var synchronizer: MultiplayerSynchronizer
 
 var shoot_cooldown = fire_speed
 var ammo: int:
@@ -21,13 +21,15 @@ var ammo: int:
 signal fired
 
 func _ready() -> void:
-	if !is_multiplayer_authority():
+	synchronizer = get_parent().get_parent().find_child("MultiplayerSynchronizer", true, false)
+	
+	if !synchronizer.is_multiplayer_authority():
 		return
 	ammo = clip
 	look_at(get_global_mouse_position())
 
 func _unhandled_input(event: InputEvent) -> void:
-	if !is_multiplayer_authority():
+	if !synchronizer.is_multiplayer_authority():
 		return
 	if event is InputEventMouseMotion:
 		look_at(get_global_mouse_position())
@@ -41,7 +43,7 @@ func spawn_bullet(new_bullet: Node):
 
 
 func _process(delta: float) -> void:
-	if !is_multiplayer_authority():
+	if !synchronizer.is_multiplayer_authority():
 		return
 	if shoot_cooldown >= 0:
 		shoot_cooldown -= delta

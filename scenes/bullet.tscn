@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cp13ouia7wa1w"]
+[gd_scene load_steps=6 format=3 uid="uid://cp13ouia7wa1w"]
 
 [ext_resource type="Texture2D" uid="uid://cepqbljkg6yn7" path="res://icon.svg" id="1_f61gq"]
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_yjr6e"]
 [ext_resource type="Script" path="res://scripts/move_c.gd" id="2_xu2tu"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_5ycfx"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_78w8m"]
 size = Vector2(68, 20)
@@ -18,11 +23,15 @@ script = ExtResource("1_yjr6e")
 scale = Vector2(0.53125, 0.157715)
 texture = ExtResource("1_f61gq")
 
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_5ycfx")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_78w8m")
 
-[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("synchronizer", "actor")]
 script = ExtResource("2_xu2tu")
+synchronizer = NodePath("../MultiplayerSynchronizer")
 direction = Vector2(1, 0)
 actor = NodePath("..")
 speed = 1500

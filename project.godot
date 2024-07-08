@@ -20,10 +20,6 @@ config/icon="res://icon.svg"
 SceneManager="*res://scenes/scene_manager.tscn"
 Global="*res://scripts/global.gd"
 
-[display]
-
-window/size/always_on_top=true
-
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/cba/plugin.cfg")

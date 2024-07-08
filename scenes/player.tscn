@@ -8,20 +8,24 @@
 [ext_resource type="PackedScene" uid="uid://b4321xovw1xhi" path="res://scenes/guns/ak.tscn" id="5_f8kch"]
 [ext_resource type="PackedScene" uid="uid://bchpxrh8u3cih" path="res://scenes/hud.tscn" id="6_52mw6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6dq78"]
-size = Vector2(128, 128)
-
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_kwgq4"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6dq78"]
+size = Vector2(128, 128)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("synchronizer")]
 collision_layer = 2
 script = ExtResource("1_2vvyq")
+synchronizer = NodePath("MultiplayerSynchronizer")
 weapons = Array[PackedScene]([ExtResource("4_jhe37"), ExtResource("5_f8kch")])
 
 [node name="Weapon" type="Node2D" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_kwgq4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_6em2n")
@@ -29,8 +33,9 @@ texture = ExtResource("1_6em2n")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6dq78")
 
-[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("synchronizer", "actor")]
 script = ExtResource("2_2ophi")
+synchronizer = NodePath("../MultiplayerSynchronizer")
 actor = NodePath("..")
 speed = 400
 top_down = true
@@ -47,9 +52,6 @@ position_smoothing_speed = 10.0
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("6_52mw6")]
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_kwgq4")
 
 [node name="Name" type="Label" parent="."]
 offset_left = -20.0
