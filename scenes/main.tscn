@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddsu0qklpr2km"]
+[gd_scene load_steps=3 format=3 uid="uid://ddsu0qklpr2km"]
 
 [ext_resource type="Texture2D" uid="uid://cepqbljkg6yn7" path="res://icon.svg" id="1_v0h30"]
-[ext_resource type="PackedScene" uid="uid://b3kndvg1opr6m" path="res://scenes/player.tscn" id="2_e25f8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5504"]
 size = Vector2(256, 256)
@@ -12,8 +11,6 @@ size = Vector2(256, 256)
 z_index = -3120
 scale = Vector2(54.1094, 54.1094)
 texture = ExtResource("1_v0h30")
-
-[node name="Player" parent="." instance=ExtResource("2_e25f8")]
 
 [node name="Obstacles" type="Node2D" parent="."]
 
@@ -27,3 +24,7 @@ texture = ExtResource("1_v0h30")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/StaticBody2D"]
 shape = SubResource("RectangleShape2D_n5504")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/player.tscn")
+spawn_path = NodePath("..")

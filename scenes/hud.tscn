@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bchpxrh8u3cih"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_873mn"]
-[ext_resource type="LabelSettings" uid="uid://bvyv5oo7i755s" path="res://resources/heading2.tres" id="1_wmuc6"]
+[ext_resource type="LabelSettings" uid="uid://saklthotqebo" path="res://resources/heading1.tres" id="2_ux7vx"]
 [ext_resource type="LabelSettings" uid="uid://qhfcbntgbe61" path="res://resources/heading3.tres" id="2_xy36d"]
 
 [node name="HUD" type="Control"]
@@ -31,7 +31,7 @@ mouse_filter = 2
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Ammo: 5/6"
-label_settings = ExtResource("1_wmuc6")
+label_settings = ExtResource("2_ux7vx")
 
 [node name="Reserve" type="Label" parent="VBoxContainer"]
 layout_mode = 2
