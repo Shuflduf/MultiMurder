@@ -5,7 +5,7 @@ extends Gun
 	set(value): 
 		pellet_count = value
 		calculate_spread()
-@export_range(0, 90) var spread = 60:
+@export_range(0, 180) var spread = 60:
 	set(value): 
 		spread = value
 		calculate_spread()
@@ -36,4 +36,4 @@ func shoot():
 func calculate_spread():
 	offset = (pellet_count - 1) / 2.0	
 	bullet_dist = float(spread) / (pellet_count - 1)
-	half_spread = spread / 2
+	half_spread = spread / 2.0

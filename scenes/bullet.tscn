@@ -9,7 +9,7 @@ size = Vector2(68, 20)
 
 [node name="Bullet" type="CharacterBody2D"]
 top_level = true
-z_index = 1585
+z_index = -100
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_yjr6e")

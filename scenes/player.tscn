@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3kndvg1opr6m"]
+[gd_scene load_steps=7 format=3 uid="uid://b3kndvg1opr6m"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_2vvyq"]
 [ext_resource type="Texture2D" uid="uid://cepqbljkg6yn7" path="res://icon.svg" id="1_6em2n"]
 [ext_resource type="Script" path="res://scripts/move_c.gd" id="2_2ophi"]
 [ext_resource type="Script" path="res://scripts/move_input_c.gd" id="3_uk2jq"]
-[ext_resource type="PackedScene" uid="uid://30bi6olkqfgu" path="res://scenes/guns/gun_template.tscn" id="5_vgh3t"]
-[ext_resource type="Script" path="res://scripts/guns/shotgun.gd" id="6_1tqjj"]
+[ext_resource type="PackedScene" uid="uid://b4321xovw1xhi" path="res://scenes/guns/ak.tscn" id="5_f8kch"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6dq78"]
 size = Vector2(128, 128)
@@ -35,10 +34,5 @@ top_down = true
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
-[node name="Shotgun" parent="." instance=ExtResource("5_vgh3t")]
-script = ExtResource("6_1tqjj")
-pellet_count = 5
-spread = 60
-neat_spread = true
-
-[editable path="Shotgun"]
+[node name="AK" parent="." instance=ExtResource("5_f8kch")]
+spread = 20
