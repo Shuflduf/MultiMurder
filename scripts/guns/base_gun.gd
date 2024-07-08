@@ -29,13 +29,12 @@ func _ready() -> void:
 	ammo = clip
 
 func shoot():
-	spawn_bullet(spawner.spawn(bullet))
+	spawn_bullet(bullet, barrel.global_transform)
 	ammo -= 1
-	
-func spawn_bullet(new_bullet: Node):
-	player.bullet_parent.add_child(new_bullet)
-	player.bullets.append(player.bullet_parent.get_child(-1))
 
+func spawn_bullet(new_bullet: PackedScene, bullet_transform):
+	var main_scene = get_tree().root.find_child("Main", true, false)
+	main_scene.rpc("add_bullet", new_bullet, bullet_transform)
 
 func _process(delta: float) -> void:
 	if !player.synchronizer.is_multiplayer_authority():

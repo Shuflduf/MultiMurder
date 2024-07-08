@@ -20,5 +20,5 @@ func update_direction(new_rot: float):
 		sin(new_rot)
 	)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	move_component.move()

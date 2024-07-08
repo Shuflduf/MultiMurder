@@ -2,6 +2,7 @@ extends Node2D
 
 
 @onready var player_spawner: MultiplayerSpawner = $MultiplayerSpawner
+@onready var bullet_parent: Node2D = $BulletParent
 
 var multiplayer_peer = ENetMultiplayerPeer.new()
 
@@ -28,3 +29,10 @@ func add_player(peer_id):
 	var player = preload("res://scenes/player.tscn").instantiate()
 	player.name = str(peer_id)
 	add_child(player, true)
+
+
+@rpc("any_peer", "call_local", "reliable", 1)
+func add_bullet(bullet: PackedScene, bullet_transform):
+	var new_bullet = bullet.instantiate()
+	new_bullet.global_transform = bullet_transform
+	bullet_parent.add_child(new_bullet)
