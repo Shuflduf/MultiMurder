@@ -2,7 +2,7 @@ class_name Bullet
 extends CharacterBody2D
 
 @onready var move_component: MoveComponent = $MoveComponent
-@export var timespan = 1
+@export var timespan = 10
 
 func _ready() -> void:
 	update_direction(rotation)
