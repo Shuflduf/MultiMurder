@@ -10,6 +10,10 @@ extends CharacterBody2D
 @export var weapons: Array[PackedScene]
 
 @export var weapon_rot: float:
+	set(value):
+		if weapon_parent == null:
+			await get_tree().process_frame
+		current_weapon.rotation = value
 	get:
 		return current_weapon.rotation
 
