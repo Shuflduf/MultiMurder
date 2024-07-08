@@ -34,7 +34,8 @@ func _ready() -> void:
 func add_player(peer_id):
 	connected_ids.append(peer_id)
 	var player = preload("res://scenes/player.tscn").instantiate()
-	add_child(player)
+	player.set_multiplayer_authority(peer_id)
+	add_child(player, true)
 
 @rpc
 func add_newly_connected_player(new_peer_id):
