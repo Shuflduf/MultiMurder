@@ -32,7 +32,7 @@ func add_player(peer_id):
 
 
 @rpc("any_peer", "call_local", "reliable", 0)
-func add_bullet(bullet_transform):
-	var new_bullet = preload("res://scenes/bullet.tscn").instantiate()
+func add_bullet(bullet_scene_path: String, bullet_transform):
+	var new_bullet = load(bullet_scene_path).instantiate()
 	new_bullet.global_transform = bullet_transform
 	bullet_parent.add_child(new_bullet, true)
