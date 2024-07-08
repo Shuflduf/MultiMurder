@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3kndvg1opr6m"]
+[gd_scene load_steps=9 format=3 uid="uid://b3kndvg1opr6m"]
 
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_2vvyq"]
 [ext_resource type="Texture2D" uid="uid://cepqbljkg6yn7" path="res://icon.svg" id="1_6em2n"]
 [ext_resource type="Script" path="res://scripts/move_c.gd" id="2_2ophi"]
 [ext_resource type="Script" path="res://scripts/move_input_c.gd" id="3_uk2jq"]
@@ -12,6 +13,7 @@ size = Vector2(128, 128)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
+script = ExtResource("1_2vvyq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_6em2n")
