@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://qhfcbntgbe61"]
+
+[ext_resource type="FontFile" uid="uid://7ubvujxllbci" path="res://assets/KodeMono.ttf" id="1_bur8f"]
+
+[resource]
+font = ExtResource("1_bur8f")
+font_size = 30
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
