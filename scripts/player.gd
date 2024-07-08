@@ -6,38 +6,37 @@ extends CharacterBody2D
 
 @export var weapons: Array[PackedScene]
 
-var set_new_weapon: PackedScene:
+var weapon_index = 0:
 	set(value):
-		if set_new_weapon != null:
-			if value.resource_path == set_new_weapon.resource_path:
-				return
-		if weapon_parent.get_child_count() > 0:
-			weapon_parent.get_child(0).queue_free()	
-				
-		set_new_weapon = value
-		weapon_parent.add_child(value.instantiate())
-		current_weapon = weapon_parent.get_child(0)
+		weapon_index = value
+		for gun in weapon_parent.get_children():
+			gun.hide()
+			gun.set_process(false)
+		weapon_parent.get_child(value).show()
+		weapon_parent.get_child(value).set_process(true)
+		update_hud()
 
 var current_weapon: Gun:
-	set(value):
-		value.fired.connect(func(): update_hud())
-		current_weapon = value
-		update_hud()
-	get:
-		return weapon_parent.get_child(0)
+	get: 
+		return weapon_parent.get_child(weapon_index)
 
 func _process(_delta: float) -> void:
 	camera.position = get_local_mouse_position() / 3
 
 
 func _ready() -> void:
-	set_new_weapon = weapons[0]
-
+	for gun in weapons:
+		weapon_parent.add_child(gun.instantiate())
+	for gun in weapon_parent.get_children():
+		gun.hide()
+		gun.fired.connect(func(): update_hud())
+	weapon_index = 0
+		
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("switch_1"):
-		set_new_weapon = weapons[0]
+		weapon_index = 0
 	elif event.is_action_pressed("switch_2"):
-		set_new_weapon = weapons[1]
+		weapon_index = 1
 		
 func update_hud():
 	print(current_weapon)
