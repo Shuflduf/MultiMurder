@@ -1,15 +1,14 @@
 class_name SpawnerComponent
 extends Node2D
 
-var scene: PackedScene
+@export var scene: PackedScene
 
-func spawn(global_spawn_position: Vector2 = global_position, parent: Node = get_tree().current_scene):
-	assert(scene is PackedScene, "Error: The scene export was never set on this spawner component.")
-
+func spawn(global_spawn_position: Vector2 = global_position):
 	var instance = scene.instantiate()
-
-	parent.add_child(instance)
-	
 	instance.global_position = global_spawn_position
+	instance.rotation = global_rotation
+	add_child(instance)
+	
+	
 	
 	#return instance

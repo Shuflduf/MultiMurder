@@ -1,9 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://cp13ouia7wa1w"]
+[gd_scene load_steps=5 format=3 uid="uid://cp13ouia7wa1w"]
 
 [ext_resource type="Texture2D" uid="uid://cepqbljkg6yn7" path="res://icon.svg" id="1_f61gq"]
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_yjr6e"]
+[ext_resource type="Script" path="res://scripts/move_c.gd" id="2_xu2tu"]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_78w8m"]
+size = Vector2(68, 20)
+
+[node name="Bullet" type="CharacterBody2D"]
+top_level = true
+z_index = 1585
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_yjr6e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.53125, 0.157715)
 texture = ExtResource("1_f61gq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_78w8m")
+
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("2_xu2tu")
+direction = Vector2(1, 0)
+actor = NodePath("..")
+speed = 1000
+top_down = true
