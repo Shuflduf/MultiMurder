@@ -1,12 +1,12 @@
 extends CanvasLayer
 
-
 signal transitioned_in()
 signal transitioned_out()
 
 @onready var animation_player = $AnimationPlayer
 
 @onready var margin_container: MarginContainer = $MarginContainer
+
 
 func transition_in() -> void:
 	animation_player.play("in")
@@ -24,11 +24,10 @@ func transition_to(scene: String) -> void:
 	var new_scene = load(scene).instantiate()
 	var root: Window = get_tree().get_root()
 
-	root.get_child(root.get_child_count() - 1).queue_free()
+	root.get_child(-1).queue_free()
 	root.add_child(new_scene)
 
 	transition_out()
-	await transitioned_out
 
 func _on_animation_player_animation_finished(anim_name: String) -> void:
 	if anim_name == "in":

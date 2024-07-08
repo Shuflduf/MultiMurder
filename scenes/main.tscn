@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://ddsu0qklpr2km"]
+[gd_scene load_steps=4 format=3 uid="uid://ddsu0qklpr2km"]
 
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_j3f81"]
 [ext_resource type="Texture2D" uid="uid://cepqbljkg6yn7" path="res://icon.svg" id="1_v0h30"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5504"]
 size = Vector2(256, 256)
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_j3f81")
 
 [node name="Backround" type="Sprite2D" parent="."]
 z_index = -3120
