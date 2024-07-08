@@ -5,8 +5,11 @@ extends Gun
 @export_range(0, 90) var spread = 60
 @export var neat_spread = true
 
-var offset = pellet_count / 2
-var bullet_dist = spread / (pellet_count - 1)
+var offset: int
+var bullet_dist: float
+
+func _ready() -> void:
+	calculate_spread()
 
 func shoot():
 	if neat_spread:
@@ -22,7 +25,7 @@ func shoot():
 			new_bullet.rotation = deg_to_rad(bullet_offset) + rotation
 			add_child(new_bullet)
 
-#func calculate_spread():
-	#var offset = pellet_count / 2
-	#for i in pellet_count:
+func calculate_spread():
+	offset = pellet_count / 2
+	bullet_dist = spread / (pellet_count - 1)
 		

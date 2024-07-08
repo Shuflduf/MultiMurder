@@ -2,9 +2,12 @@ class_name Bullet
 extends CharacterBody2D
 
 @onready var move_component: MoveComponent = $MoveComponent
+@export var timespan = 1
 
 func _ready() -> void:
 	update_direction(rotation)
+	await get_tree().create_timer(timespan).timeout
+	queue_free()
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	queue_free()

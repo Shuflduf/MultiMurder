@@ -37,7 +37,7 @@ position_smoothing_speed = 10.0
 
 [node name="Shotgun" parent="." instance=ExtResource("5_vgh3t")]
 script = ExtResource("6_1tqjj")
-pellet_count = 5
+pellet_count = 50
 spread = 60
 neat_spread = true
 
