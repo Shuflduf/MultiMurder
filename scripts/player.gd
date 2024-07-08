@@ -9,6 +9,10 @@ extends CharacterBody2D
 @export var synchronizer: MultiplayerSynchronizer
 @export var weapons: Array[PackedScene]
 
+@export var weapon_rot: float:
+	get:
+		return current_weapon.rotation
+
 var weapon_index = 0:
 	set(value):
 		weapon_index = value
@@ -26,6 +30,7 @@ var current_weapon: Gun:
 func _process(_delta: float) -> void:
 	camera.position = get_local_mouse_position() / 3
 	if synchronizer.is_multiplayer_authority():
+		print(weapon_rot)
 		var input_dir = Input.get_vector("left","right","up","down")
 		move_c.direction = input_dir
 		move_c.move()
@@ -36,6 +41,7 @@ func _ready() -> void:
 	synchronizer.set_multiplayer_authority(str(name).to_int())
 	if synchronizer.is_multiplayer_authority():
 		camera.make_current()
+		hud.show()
 	
 	for gun in weapons:
 		weapon_parent.add_child(gun.instantiate())
