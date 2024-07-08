@@ -15,6 +15,7 @@ func _ready() -> void:
 		Global.gameType.Host:
 			multiplayer_peer.create_server(port)
 			print("Host")
+			multiplayer.multiplayer_peer = multiplayer_peer
 			add_player(1)
 			
 			multiplayer_peer.peer_connected.connect(
@@ -24,17 +25,18 @@ func _ready() -> void:
 					rpc_id(new_peer_id, "add_previously_connected_player", connected_ids)
 					add_player(new_peer_id)
 			)
+			
 		Global.gameType.Join:
 			multiplayer_peer.create_client(ADDRESS, port)
+			multiplayer.multiplayer_peer = multiplayer_peer
 			print("Client")
 			
-			
-	multiplayer.multiplayer_peer = multiplayer_peer
 
 func add_player(peer_id):
 	connected_ids.append(peer_id)
 	var player = preload("res://scenes/player.tscn").instantiate()
 	player.set_multiplayer_authority(peer_id)
+	player.name = str(peer_id)
 	add_child(player, true)
 
 @rpc

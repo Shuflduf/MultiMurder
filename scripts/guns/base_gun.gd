@@ -21,10 +21,14 @@ var ammo: int:
 signal fired
 
 func _ready() -> void:
+	if !is_multiplayer_authority():
+		return
 	ammo = clip
 	look_at(get_global_mouse_position())
 
 func _unhandled_input(event: InputEvent) -> void:
+	if !is_multiplayer_authority():
+		return
 	if event is InputEventMouseMotion:
 		look_at(get_global_mouse_position())
 
@@ -37,6 +41,8 @@ func spawn_bullet(new_bullet: Node):
 
 
 func _process(delta: float) -> void:
+	if !is_multiplayer_authority():
+		return
 	if shoot_cooldown >= 0:
 		shoot_cooldown -= delta
 	else:

@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var camera: Camera2D = $Camera2D
 @onready var weapon_parent: Node2D = $Weapon
 @onready var hud: Control = $CanvasLayer/HUD
+@onready var name_label: Label = $Name
 
 @export var weapons: Array[PackedScene]
 
@@ -25,6 +26,7 @@ func _process(_delta: float) -> void:
 
 
 func _ready() -> void:
+	name_label.text = str(get_multiplayer_authority())
 	for gun in weapons:
 		weapon_parent.add_child(gun.instantiate())
 	for gun in weapon_parent.get_children():
