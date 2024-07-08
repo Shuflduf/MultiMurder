@@ -13,23 +13,27 @@ extends Gun
 
 var offset: float
 var bullet_dist: float
+var half_spread: float
 
 func _ready() -> void:
 	calculate_spread()
 
 func shoot():
-	if neat_spread:
-		for pellet in pellet_count:
-			var bullet_offset = offset - pellet
+	for pellet in pellet_count:
+		var new_bullet: Bullet = spawner.spawn(bullet)
+		var bullet_offset: float
+		
+		if neat_spread:
+			bullet_offset = offset - pellet
 			bullet_offset *= bullet_dist
-			
-			var new_bullet: Bullet = spawner.spawn(bullet)
-			print(offset)
-			
-			new_bullet.rotation = deg_to_rad(bullet_offset) + rotation
-			add_child(new_bullet)
-
+				
+		else:
+			bullet_offset = randf_range(-half_spread, half_spread)
+				
+		new_bullet.rotation = deg_to_rad(bullet_offset) + rotation
+		add_child(new_bullet)
+		
 func calculate_spread():
 	offset = (pellet_count - 1) / 2.0	
 	bullet_dist = float(spread) / (pellet_count - 1)
-	print(bullet_dist)	
+	half_spread = spread / 2
