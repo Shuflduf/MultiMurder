@@ -8,7 +8,7 @@ var multiplayer_peer = ENetMultiplayerPeer.new()
 
 const ADDRESS = "localhost"
 
-var connected_ids = []
+#var connected_ids = []
 
 func _ready() -> void:
 	match Global.current_type:
@@ -31,8 +31,8 @@ func add_player(peer_id):
 	add_child(player, true)
 
 
-@rpc("any_peer", "call_local", "reliable", 1)
-func add_bullet(bullet: PackedScene, bullet_transform):
-	var new_bullet = bullet.instantiate()
+@rpc("any_peer", "call_local", "reliable", 0)
+func add_bullet(bullet_transform):
+	var new_bullet = preload("res://scenes/bullet.tscn").instantiate()
 	new_bullet.global_transform = bullet_transform
-	bullet_parent.add_child(new_bullet)
+	bullet_parent.add_child(new_bullet, true)

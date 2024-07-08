@@ -42,9 +42,12 @@ func _process(_delta: float) -> void:
 	move_c.move()
 	current_weapon.look_at_mouse()
 
+func _enter_tree() -> void:
+	
+	synchronizer.set_multiplayer_authority(str(name).to_int())
+
 func _ready() -> void:
 	name_label.text = name
-	synchronizer.set_multiplayer_authority(str(name).to_int())
 	if synchronizer.is_multiplayer_authority():
 		camera.make_current()
 		hud.show()
