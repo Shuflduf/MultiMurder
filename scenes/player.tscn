@@ -37,13 +37,14 @@ position_smoothing_enabled = true
 
 [node name="Gun" type="Node2D" parent="."]
 script = ExtResource("6_8gjan")
+bullet = ExtResource("5_yklxn")
 
-[node name="Sprite2D" type="Sprite2D" parent="Gun"]
-position = Vector2(69.83, 0)
+[node name="barrel" type="Node2D" parent="Gun"]
+position = Vector2(70, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Gun/barrel"]
 scale = Vector2(0.606719, 0.390625)
 texture = ExtResource("1_6em2n")
 
-[node name="SpawnerComponent" type="Node2D" parent="Gun"]
-position = Vector2(69.83, 0)
+[node name="SpawnerComponent" type="Node2D" parent="Gun/barrel"]
 script = ExtResource("5_wc8y1")
-scene = ExtResource("5_yklxn")
