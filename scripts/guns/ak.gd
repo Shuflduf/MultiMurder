@@ -12,5 +12,5 @@ func shoot():
 	var new_bullet: Bullet = spawner.spawn(bullet)
 	var bullet_offset = randf_range(-half_spread, half_spread)
 	new_bullet.rotation = deg_to_rad(bullet_offset) + rotation
-	add_child(new_bullet)
+	spawn_bullet(new_bullet)
 	

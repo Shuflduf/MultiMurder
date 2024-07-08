@@ -21,8 +21,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		look_at(get_global_mouse_position())
 
 func shoot():
-	add_child(spawner.spawn(bullet))
+	spawn_bullet(spawner.spawn(bullet))
 	
+func spawn_bullet(bullet: Node):
+	get_tree().root.add_child(bullet)
+
+
 func _process(delta: float) -> void:
 	if shoot_cooldown >= 0:
 		shoot_cooldown -= delta

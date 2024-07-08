@@ -16,6 +16,7 @@ var bullet_dist: float
 var half_spread: float
 
 func _ready() -> void:
+	super()
 	calculate_spread()
 
 func shoot():
@@ -31,7 +32,7 @@ func shoot():
 			bullet_offset = randf_range(-half_spread, half_spread)
 				
 		new_bullet.rotation = deg_to_rad(bullet_offset) + rotation
-		add_child(new_bullet)
+		spawn_bullet(new_bullet)
 		
 func calculate_spread():
 	offset = (pellet_count - 1) / 2.0	
