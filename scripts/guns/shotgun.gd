@@ -21,7 +21,6 @@ func _ready() -> void:
 
 func shoot():
 	for pellet in pellet_count:
-		var new_bullet: Bullet = spawner.spawn(bullet)
 		var bullet_offset: float
 		
 		if neat_spread:
@@ -31,8 +30,10 @@ func shoot():
 		else:
 			bullet_offset = randf_range(-half_spread, half_spread)
 				
-		new_bullet.rotation = deg_to_rad(bullet_offset) + rotation
-		spawn_bullet(new_bullet)
+		var bullet_transform: Transform2D
+		bullet_transform = bullet_transform.rotated(deg_to_rad(bullet_offset) + rotation)
+		bullet_transform = bullet_transform.translated(barrel.global_position)
+		spawn_bullet(bullet, bullet_transform)
 	ammo -= 1
 		
 func calculate_spread():
