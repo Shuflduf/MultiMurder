@@ -18,15 +18,25 @@ extends CharacterBody2D
 	get:
 		return current_weapon.rotation
 
-var weapon_index = 0:
+@export var weapon_index = 0:
 	set(value):
 		weapon_index = value
+		if weapon_parent == null:
+			await get_tree().process_frame
 		for gun in weapon_parent.get_children():
 			gun.hide()
 			gun.set_process(false)
 		weapon_parent.get_child(value).show()
 		weapon_parent.get_child(value).set_process(true)
 		update_hud()
+
+@export var weapon_upsidedown: bool:
+	set(value):
+		if weapon_parent == null:
+			await get_tree().process_frame
+		current_weapon.sprite.flip_v = value
+	get:
+		return current_weapon.sprite.flip_v
 
 var current_weapon: Gun:
 	get: 

@@ -35,8 +35,7 @@ func _ready() -> void:
 	ammo = clip
 
 func shoot():
-	
-	#spawn_bullet(bullet, barrel.global_transform.translated_local(offset))
+	spawn_bullet(bullet, barrel.global_transform)
 	ammo -= 1
 
 func spawn_bullet(new_bullet: PackedScene, bullet_transform: Transform2D):
@@ -46,7 +45,7 @@ func spawn_bullet(new_bullet: PackedScene, bullet_transform: Transform2D):
 	
 	var main_scene = get_tree().root.find_child("Main", true, false)
 	main_scene.rpc("add_bullet", new_bullet.get_path(), \
-		bullet_transform.translated_local(offset))
+			bullet_transform.translated_local(offset))
 
 func _process(delta: float) -> void:
 	if !player.synchronizer.is_multiplayer_authority():
