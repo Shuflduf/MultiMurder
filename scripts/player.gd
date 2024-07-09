@@ -59,7 +59,7 @@ func _process(_delta: float) -> void:
 	if !synchronizer.is_multiplayer_authority():
 		return
 	var input_dir = Input.get_vector("left","right","up","down")
-	avatar.moving = input_dir.length() > 0
+	avatar.move_dir = input_dir
 	move_c.direction = input_dir
 	move_c.move()
 	current_weapon.look_at_mouse()
