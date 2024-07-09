@@ -35,15 +35,18 @@ func _ready() -> void:
 	ammo = clip
 
 func shoot():
+	
+	#spawn_bullet(bullet, barrel.global_transform.translated_local(offset))
+	ammo -= 1
+
+func spawn_bullet(new_bullet: PackedScene, bullet_transform: Transform2D):
 	var offset = bullet_point.position
 	if sprite.flip_v:
 		offset *= Vector2.UP
-	spawn_bullet(bullet, barrel.global_transform.translated_local(offset))
-	ammo -= 1
-
-func spawn_bullet(new_bullet: PackedScene, bullet_transform):
+	
 	var main_scene = get_tree().root.find_child("Main", true, false)
-	main_scene.rpc("add_bullet", new_bullet.get_path(), bullet_transform)
+	main_scene.rpc("add_bullet", new_bullet.get_path(), \
+		bullet_transform.translated_local(offset))
 
 func _process(delta: float) -> void:
 	if !player.synchronizer.is_multiplayer_authority():

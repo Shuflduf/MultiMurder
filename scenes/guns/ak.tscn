@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4321xovw1xhi"]
+[gd_scene load_steps=4 format=3 uid="uid://b4321xovw1xhi"]
 
 [ext_resource type="PackedScene" uid="uid://30bi6olkqfgu" path="res://scenes/guns/base_gun.tscn" id="1_ffu0d"]
 [ext_resource type="Script" path="res://scripts/guns/ak.gd" id="2_j1cnl"]
+[ext_resource type="Texture2D" uid="uid://kbvrgycnyps0" path="res://assets/sprites/ak.png" id="3_nknv2"]
 
 [node name="AK" instance=ExtResource("1_ffu0d")]
 script = ExtResource("2_j1cnl")
@@ -10,3 +11,11 @@ fire_speed = 0.1
 clip = 30
 reserve = 90
 automatic = true
+
+[node name="Sprite2D" parent="barrel" index="0"]
+scale = Vector2(3.72727, 3.72727)
+texture = ExtResource("3_nknv2")
+flip_h = true
+
+[node name="BulletPoint" parent="barrel" index="1"]
+position = Vector2(106, -24)
