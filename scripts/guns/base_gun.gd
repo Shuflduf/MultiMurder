@@ -6,6 +6,7 @@ extends Node2D
 @export var clip = 6
 @export var reserve = 20
 @export var automatic = false
+@export_range(0, 90) var recoil = 200.0
 
 @onready var barrel: Node2D = $barrel
 @onready var sprite: Sprite2D = $barrel/Sprite2D
@@ -20,7 +21,9 @@ var ammo: int:
 	set(value):
 		ammo = value
 		fired.emit()
+		recoil_gun()
 
+var recoil_offset: float
 
 signal fired
 
@@ -30,6 +33,7 @@ func look_at_mouse():
 		sprite.flip_v = false
 	else:
 		sprite.flip_v = true
+	rotation_degrees += recoil_offset
 
 func _ready() -> void:	
 	ammo = clip
@@ -37,6 +41,22 @@ func _ready() -> void:
 func shoot():
 	spawn_bullet(bullet, barrel.global_transform)
 	ammo -= 1
+	
+	
+func recoil_gun():
+	var back_tween = get_tree().create_tween()
+	var offset = -1
+	if sprite.flip_v:
+		offset *= -1
+	
+	back_tween.tween_property(self, "recoil_offset", rotation + deg_to_rad(recoil * 100 * offset), fire_speed / 3)\
+			.set_ease(Tween.EASE_OUT)\
+			.set_trans(Tween.TRANS_QUART)
+	await back_tween.finished
+	var forward_tween = get_tree().create_tween()
+	forward_tween.tween_property(self, "recoil_offset", 0, (fire_speed / 3) * 2)\
+			.set_ease(Tween.EASE_OUT)\
+			.set_trans(Tween.TRANS_QUART)
 
 func spawn_bullet(new_bullet: PackedScene, bullet_transform: Transform2D):
 	var offset = bullet_point.position
