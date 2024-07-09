@@ -65,7 +65,7 @@ func spawn_bullet(new_bullet: PackedScene, bullet_transform: Transform2D):
 	
 	var main_scene = get_tree().root.find_child("Main", true, false)
 	main_scene.rpc("add_bullet", new_bullet.get_path(), \
-			bullet_transform.translated_local(offset))
+			bullet_transform.translated_local(offset), player)
 
 func _process(delta: float) -> void:
 	if !player.synchronizer.is_multiplayer_authority():

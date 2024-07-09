@@ -6,16 +6,15 @@ extends CharacterBody2D
 @onready var hud: Control = $CanvasLayer/HUD
 @onready var name_label: Label = $Name
 @onready var move_c: MoveComponent = $MoveComponent
+@onready var health_bar: ProgressBar = $HealthBar
 
-@export var synchronizer: MultiplayerSynchronizer
-@export var weapons: Array[PackedScene]
+# Synchronized Values
 @export var username = Global.username:
 	set(value):
 		username = value
 		if name_label == null:
 			await get_tree().physics_frame
 		name_label.text = value
-
 @export var weapon_rot: float:
 	set(value):
 		if weapon_parent == null:
@@ -23,7 +22,6 @@ extends CharacterBody2D
 		current_weapon.rotation = value
 	get:
 		return current_weapon.rotation
-
 @export var weapon_index = 0:
 	set(value):
 		weapon_index = value
@@ -35,14 +33,21 @@ extends CharacterBody2D
 		weapon_parent.get_child(value).show()
 		weapon_parent.get_child(value).set_process(true)
 		update_hud()
-
 @export var weapon_upsidedown: bool:
+	
 	set(value):
 		if weapon_parent == null:
 			await get_tree().process_frame
 		current_weapon.sprite.flip_v = value
 	get:
 		return current_weapon.sprite.flip_v
+@export var health: = 100:
+	set(value):
+		health = value
+		health_bar.value = value
+
+@export var synchronizer: MultiplayerSynchronizer
+@export var weapons: Array[PackedScene]
 
 var current_weapon: Gun:
 	get: 
