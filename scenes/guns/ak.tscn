@@ -11,6 +11,7 @@ fire_speed = 0.1
 clip = 30
 reserve = 90
 automatic = true
+recoil = 3
 
 [node name="Sprite2D" parent="barrel" index="0"]
 scale = Vector2(3.72727, 3.72727)

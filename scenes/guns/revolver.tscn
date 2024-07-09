@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://dlb3c0mroha0x" path="res://assets/sprites/revolver.png" id="2_3rmrh"]
 
 [node name="Revolver" instance=ExtResource("1_ekelj")]
-recoil = 10.0
 
 [node name="Sprite2D" parent="barrel" index="0"]
 scale = Vector2(3.66667, 3.66667)

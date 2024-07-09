@@ -10,7 +10,7 @@ pellet_count = 5
 spread = 60
 neat_spread = true
 fire_speed = 0.4
-recoil = 20.0
+recoil = 20
 
 [node name="Sprite2D" parent="barrel" index="0"]
 position = Vector2(47, 0)

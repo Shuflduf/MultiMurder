@@ -6,7 +6,7 @@ extends Node2D
 @export var clip = 6
 @export var reserve = 20
 @export var automatic = false
-@export_range(0, 90) var recoil = 200.0
+@export_range(0, 90) var recoil = 10
 
 @onready var barrel: Node2D = $barrel
 @onready var sprite: Sprite2D = $barrel/Sprite2D
