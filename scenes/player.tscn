@@ -27,7 +27,7 @@ properties/4/spawn = true
 properties/4/replication_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6dq78"]
-size = Vector2(128, 128)
+size = Vector2(120, 100)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4wdkm"]
 bg_color = Color(1, 0, 0, 1)
@@ -57,6 +57,7 @@ replication_config = SubResource("SceneReplicationConfig_kwgq4")
 [node name="Avatar" parent="." instance=ExtResource("4_neo6e")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_6dq78")
 
 [node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
