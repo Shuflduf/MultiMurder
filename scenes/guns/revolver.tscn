@@ -8,3 +8,6 @@
 [node name="Sprite2D" parent="barrel" index="0"]
 scale = Vector2(3.66667, 3.66667)
 texture = ExtResource("2_3rmrh")
+
+[node name="BulletPoint" parent="barrel" index="1"]
+position = Vector2(28, -20)

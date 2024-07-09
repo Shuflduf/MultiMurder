@@ -8,8 +8,8 @@ extends Node2D
 @export var automatic = false
 
 @onready var barrel: Node2D = $barrel
-@onready var spawner: SpawnerComponent = $barrel/SpawnerComponent
 @onready var sprite: Sprite2D = $barrel/Sprite2D
+@onready var bullet_point: Marker2D = $barrel/BulletPoint
 
 var player: Player :
 	get:
@@ -20,6 +20,7 @@ var ammo: int:
 	set(value):
 		ammo = value
 		fired.emit()
+
 
 signal fired
 
@@ -34,12 +35,15 @@ func _ready() -> void:
 	ammo = clip
 
 func shoot():
-	spawn_bullet(bullet, barrel.global_transform)
+	var offset = bullet_point.position
+	if sprite.flip_v:
+		offset *= Vector2.UP
+	spawn_bullet(bullet, barrel.global_transform.translated_local(offset))
 	ammo -= 1
 
 func spawn_bullet(new_bullet: PackedScene, bullet_transform):
 	var main_scene = get_tree().root.find_child("Main", true, false)
-	main_scene.rpc("add_bullet", bullet.get_path(), bullet_transform)
+	main_scene.rpc("add_bullet", new_bullet.get_path(), bullet_transform)
 
 func _process(delta: float) -> void:
 	if !player.synchronizer.is_multiplayer_authority():
