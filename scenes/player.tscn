@@ -54,7 +54,7 @@ weapons = Array[PackedScene]([ExtResource("4_jhe37"), ExtResource("5_f8kch")])
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_kwgq4")
 
-[node name="Red" parent="." instance=ExtResource("4_neo6e")]
+[node name="Avatar" parent="." instance=ExtResource("4_neo6e")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6dq78")

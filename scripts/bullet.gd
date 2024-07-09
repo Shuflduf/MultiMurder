@@ -9,13 +9,12 @@ extends CharacterBody2D
 var bullet_owner: Player
 
 func _ready() -> void:
-	print(bullet_owner)
 	update_direction(rotation)
 	
 	await get_tree().create_timer(timespan).timeout
 	queue_free()
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_area_2d_body_entered(body) -> void:
 	if body is Player:
 		if !body == bullet_owner:
 			body.health -= damage

@@ -1,11 +1,18 @@
+class_name Avatar
 extends Sprite2D
 
+@onready var left_foot: Sprite2D = $FootLeft
+@onready var body: Sprite2D = $"."
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var moving = false
 
+var left_foot_position: Vector2
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if moving: 
+		left_foot.global_position = left_foot_position
+		if (left_foot.global_position - body.global_position).length() > 100:
+			left_foot_position = body.global_position
+	else:
+		left_foot.position = Vector2.ZERO
+

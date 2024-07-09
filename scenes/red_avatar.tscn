@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ch8gwjx36gvk0" path="res://assets/sprites/player/red/r_player_foot_l.png" id="4_1bsr0"]
 [ext_resource type="Texture2D" uid="uid://dgtwpn08vq6s5" path="res://assets/sprites/player/red/r_player_foot_r.png" id="5_d3gxv"]
 
-[node name="Red" instance=ExtResource("1_hwv4w")]
+[node name="Avatar" instance=ExtResource("1_hwv4w")]
 texture = ExtResource("1_co0tc")
 
 [node name="Face" parent="." index="0"]

@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var name_label: Label = $Name
 @onready var move_c: MoveComponent = $MoveComponent
 @onready var health_bar: ProgressBar = $HealthBar
+@onready var avatar: Avatar = $Avatar
 
 # Synchronized Values
 @export var username = Global.username:
@@ -58,6 +59,7 @@ func _process(_delta: float) -> void:
 	if !synchronizer.is_multiplayer_authority():
 		return
 	var input_dir = Input.get_vector("left","right","up","down")
+	avatar.moving = input_dir.length() > 0
 	move_c.direction = input_dir
 	move_c.move()
 	current_weapon.look_at_mouse()
