@@ -9,6 +9,7 @@ extends Node2D
 
 @onready var barrel: Node2D = $barrel
 @onready var spawner: SpawnerComponent = $barrel/SpawnerComponent
+@onready var sprite: Sprite2D = $barrel/Sprite2D
 
 var player: Player :
 	get:
@@ -24,6 +25,10 @@ signal fired
 
 func look_at_mouse():
 	look_at(get_global_mouse_position())
+	if cos(rotation) > 0:
+		sprite.flip_v = false
+	else:
+		sprite.flip_v = true
 
 func _ready() -> void:	
 	ammo = clip
