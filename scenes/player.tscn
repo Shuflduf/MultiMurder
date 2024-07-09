@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://b3kndvg1opr6m"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_2vvyq"]
-[ext_resource type="Texture2D" uid="uid://cepqbljkg6yn7" path="res://icon.svg" id="1_6em2n"]
 [ext_resource type="Script" path="res://scripts/move_c.gd" id="2_2ophi"]
 [ext_resource type="PackedScene" uid="uid://bj2ddbtirkem" path="res://scenes/guns/revolver.tscn" id="4_jhe37"]
+[ext_resource type="PackedScene" uid="uid://dtd46rnlr7en4" path="res://scenes/red_avatar.tscn" id="4_neo6e"]
 [ext_resource type="PackedScene" uid="uid://b4321xovw1xhi" path="res://scenes/guns/ak.tscn" id="5_f8kch"]
 [ext_resource type="PackedScene" uid="uid://bchpxrh8u3cih" path="res://scenes/hud.tscn" id="6_52mw6"]
 [ext_resource type="LabelSettings" uid="uid://qhfcbntgbe61" path="res://resources/heading3.tres" id="7_b2ah7"]
@@ -54,8 +54,7 @@ weapons = Array[PackedScene]([ExtResource("4_jhe37"), ExtResource("5_f8kch")])
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_kwgq4")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_6em2n")
+[node name="Red" parent="." instance=ExtResource("4_neo6e")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6dq78")

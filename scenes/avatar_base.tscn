@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://clu87500k60uq"]
+
+[node name="Body" type="Sprite2D"]
+scale = Vector2(4, 4)
+
+[node name="Face" type="Sprite2D" parent="."]
+
+[node name="FootLeft" type="Sprite2D" parent="."]
+
+[node name="FootRight" type="Sprite2D" parent="."]

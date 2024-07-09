@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://dc0r73ngv2mq3"]
+
+[ext_resource type="PackedScene" uid="uid://clu87500k60uq" path="res://scenes/avatar_base.tscn" id="1_l01rw"]
+[ext_resource type="Texture2D" uid="uid://y2y4fu1f20x7" path="res://assets/sprites/player/blue/b_player_body.png" id="2_xpbub"]
+[ext_resource type="Texture2D" uid="uid://cxhjxv54wpdbx" path="res://assets/sprites/player/blue/b_player_face.png" id="3_343sf"]
+[ext_resource type="Texture2D" uid="uid://bxxf062j2enqu" path="res://assets/sprites/player/blue/b_player_foot_l.png" id="4_fvapd"]
+[ext_resource type="Texture2D" uid="uid://c3rvkuh47dnml" path="res://assets/sprites/player/blue/b_player_foot_r.png" id="5_2jtvv"]
+
+[node name="Blue" instance=ExtResource("1_l01rw")]
+texture = ExtResource("2_xpbub")
+
+[node name="Face" parent="." index="0"]
+texture = ExtResource("3_343sf")
+
+[node name="FootLeft" parent="." index="1"]
+texture = ExtResource("4_fvapd")
+
+[node name="FootRight" parent="." index="2"]
+texture = ExtResource("5_2jtvv")
