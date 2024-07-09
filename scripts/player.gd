@@ -9,6 +9,12 @@ extends CharacterBody2D
 
 @export var synchronizer: MultiplayerSynchronizer
 @export var weapons: Array[PackedScene]
+@export var username = Global.username:
+	set(value):
+		username = value
+		if name_label == null:
+			await get_tree().physics_frame
+		name_label.text = value
 
 @export var weapon_rot: float:
 	set(value):
@@ -42,7 +48,6 @@ var current_weapon: Gun:
 	get: 
 		return weapon_parent.get_child(weapon_index)
 
-
 func _process(_delta: float) -> void:
 	camera.position = get_local_mouse_position() / 3
 	if !synchronizer.is_multiplayer_authority():
@@ -57,7 +62,10 @@ func _enter_tree() -> void:
 	synchronizer.set_multiplayer_authority(str(name).to_int())
 
 func _ready() -> void:
-	name_label.text = name
+	name_label.text = username
+	if username.is_empty():
+		username = name
+		
 	if synchronizer.is_multiplayer_authority():
 		camera.make_current()
 		hud.show()

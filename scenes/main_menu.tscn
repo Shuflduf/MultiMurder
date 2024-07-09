@@ -62,6 +62,12 @@ layout_mode = 2
 text = "MULTIMURDER"
 label_settings = ExtResource("2_vyqso")
 
+[node name="Username" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+placeholder_text = "Username"
+expand_to_text_length = true
+
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 

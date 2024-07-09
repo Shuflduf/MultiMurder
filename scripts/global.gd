@@ -7,3 +7,4 @@ enum gameType {
 
 var current_type : gameType
 var port: int
+var username: String
