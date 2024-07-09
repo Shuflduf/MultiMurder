@@ -13,7 +13,9 @@ texture = ExtResource("1_co0tc")
 texture = ExtResource("3_w4rlk")
 
 [node name="FootLeft" parent="." index="1"]
+unique_name_in_owner = true
 texture = ExtResource("4_1bsr0")
 
 [node name="FootRight" parent="." index="2"]
+unique_name_in_owner = true
 texture = ExtResource("5_d3gxv")
