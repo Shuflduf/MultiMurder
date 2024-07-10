@@ -23,7 +23,8 @@ var ammo: int:
 	set(value):
 		ammo = value
 		fired.emit()
-		recoil_gun()
+		if value != clip:
+			recoil_gun()
 		if value == 0:
 			reload()
 
@@ -61,8 +62,9 @@ func _ready() -> void:
 	reload_ind_offset = reload_indicator.position.y
 
 func shoot():
-	spawn_bullet(bullet, barrel.global_transform)
-	ammo -= 1
+	if !ammo <= 0:
+		spawn_bullet(bullet, barrel.global_transform)
+		ammo -= 1
 	
 	
 func recoil_gun():

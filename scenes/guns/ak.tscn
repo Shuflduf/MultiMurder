@@ -12,11 +12,18 @@ clip = 30
 reserve = 90
 automatic = true
 recoil = 3
+reload_speed = 3.0
 
 [node name="Sprite2D" parent="barrel" index="0"]
 scale = Vector2(3.72727, 3.72727)
 texture = ExtResource("3_nknv2")
 flip_h = true
 
-[node name="BulletPoint" parent="barrel" index="1"]
-position = Vector2(106, -24)
+[node name="BulletPoint" parent="barrel/Flip" index="0"]
+position = Vector2(88, -26)
+
+[node name="ReloadIndicator" parent="barrel/Flip" index="1"]
+offset_left = 55.0
+offset_top = -78.0
+offset_right = 93.0
+offset_bottom = -40.0

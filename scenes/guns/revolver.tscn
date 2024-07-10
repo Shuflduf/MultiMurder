@@ -10,6 +10,9 @@ reload_speed = 1.5
 scale = Vector2(3.66667, 3.66667)
 texture = ExtResource("2_3rmrh")
 
+[node name="BulletPoint" parent="barrel/Flip" index="0"]
+position = Vector2(36, -19)
+
 [node name="ReloadIndicator" parent="barrel/Flip" index="1"]
 offset_left = -14.0
 offset_top = -70.0

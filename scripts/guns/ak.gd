@@ -10,6 +10,8 @@ var half_spread = spread / 2.0
 
 func shoot():
 	#var new_bullet: Bullet = spawner.spawn(bullet)
+	if ammo <= 0:
+		return
 	var bullet_offset = randf_range(-half_spread, half_spread)
 	var bullet_transform: Transform2D
 	bullet_transform = bullet_transform.rotated(deg_to_rad(bullet_offset) + rotation)
