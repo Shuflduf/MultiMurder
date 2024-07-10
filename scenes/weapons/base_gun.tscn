@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://30bi6olkqfgu"]
 
-[ext_resource type="Script" path="res://scripts/guns/base_gun.gd" id="1_0qmv6"]
-[ext_resource type="PackedScene" uid="uid://dx8s8xalqak7b" path="res://scenes/base_weapon.tscn" id="1_w7hfp"]
-[ext_resource type="PackedScene" uid="uid://cp13ouia7wa1w" path="res://scenes/bullet.tscn" id="2_016uv"]
-[ext_resource type="Texture2D" uid="uid://d12bgrnl1heln" path="res://assets/sprites/circle.png" id="4_5bhgc"]
+[ext_resource type="PackedScene" uid="uid://dx8s8xalqak7b" path="res://scenes/base_weapon.tscn" id="1_n6w03"]
+[ext_resource type="Script" path="res://scripts/weapons/base_gun.gd" id="2_dtd4a"]
+[ext_resource type="PackedScene" uid="uid://cp13ouia7wa1w" path="res://scenes/bullet.tscn" id="3_vgxu8"]
+[ext_resource type="Texture2D" uid="uid://d12bgrnl1heln" path="res://assets/sprites/circle.png" id="4_6octm"]
 
-[node name="Gun" instance=ExtResource("1_w7hfp")]
-script = ExtResource("1_0qmv6")
-bullet = ExtResource("2_016uv")
+[node name="Gun" instance=ExtResource("1_n6w03")]
+script = ExtResource("2_dtd4a")
+bullet = ExtResource("3_vgxu8")
 fire_speed = 0.2
 clip = 6
 reserve = 20
@@ -31,5 +31,5 @@ offset_right = 18.0
 offset_bottom = -26.0
 fill_mode = 4
 nine_patch_stretch = true
-texture_progress = ExtResource("4_5bhgc")
+texture_progress = ExtResource("4_6octm")
 metadata/_edit_use_anchors_ = true

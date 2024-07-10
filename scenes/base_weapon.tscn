@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://dx8s8xalqak7b"]
 
-[ext_resource type="Script" path="res://scripts/weapon_base.gd" id="1_mpsnt"]
+[ext_resource type="Script" path="res://scripts/weapons/weapon_base.gd" id="1_pfdy1"]
 [ext_resource type="Texture2D" uid="uid://cepqbljkg6yn7" path="res://icon.svg" id="2_htgxi"]
 
 [node name="BaseWeapon" type="Node2D"]
-script = ExtResource("1_mpsnt")
+script = ExtResource("1_pfdy1")
 
 [node name="Hand" type="Node2D" parent="."]
 position = Vector2(183, 0)

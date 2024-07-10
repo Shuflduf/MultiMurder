@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://mun50baoo2i"]
+
+[ext_resource type="PackedScene" uid="uid://b45ghbmqumlpg" path="res://scenes/weapons/melee.tscn" id="1_iico5"]
+[ext_resource type="Texture2D" uid="uid://dh7e5o0odeshl" path="res://assets/sprites/feedbacker.png" id="2_t2mp6"]
+
+[node name="Feedbacker" instance=ExtResource("1_iico5")]
+flip_enabled = false
+
+[node name="Sprite2D" parent="Hand" index="0"]
+rotation = 1.57079
+scale = Vector2(3, 3)
+texture = ExtResource("2_t2mp6")

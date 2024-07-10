@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b45ghbmqumlpg"]
+
+[ext_resource type="Script" path="res://scripts/weapons/melee.gd" id="1_tc0td"]
+[ext_resource type="Texture2D" uid="uid://cepqbljkg6yn7" path="res://icon.svg" id="2_qoi3m"]
+
+[node name="Melee" type="Node2D"]
+script = ExtResource("1_tc0td")
+
+[node name="Hand" type="Node2D" parent="."]
+position = Vector2(108, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hand"]
+scale = Vector2(0.593239, 0.593239)
+texture = ExtResource("2_qoi3m")
