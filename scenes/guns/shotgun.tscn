@@ -15,16 +15,18 @@ reserve = 16
 recoil = 20
 reload_speed = 3.0
 
-[node name="Sprite2D" parent="barrel" index="0"]
-position = Vector2(47, 0)
-scale = Vector2(3.5, 3.5)
+[node name="Hand" parent="." index="0"]
+position = Vector2(124, 0)
+
+[node name="Sprite2D" parent="Hand" index="0"]
+scale = Vector2(3, 3)
 texture = ExtResource("3_yn016")
 
-[node name="BulletPoint" parent="barrel/Flip" index="0"]
-position = Vector2(136, -28)
+[node name="BulletPoint" parent="Hand/Flip" index="0"]
+position = Vector2(25, -8)
 
-[node name="ReloadIndicator" parent="barrel/Flip" index="1"]
-offset_left = 100.0
-offset_top = -76.0
-offset_right = 138.0
-offset_bottom = -38.0
+[node name="ReloadIndicator" parent="Hand/Flip" index="1"]
+offset_left = 35.0
+offset_top = -77.0
+offset_right = 73.0
+offset_bottom = -39.0

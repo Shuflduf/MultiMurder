@@ -64,7 +64,6 @@ func shoot():
 		spawn_bullet(bullet, hand.global_transform)
 		ammo -= 1
 	
-	
 func recoil_gun():
 	var back_tween = get_tree().create_tween()
 	var offset = -1
