@@ -7,10 +7,12 @@ extends Node2D
 @export var reserve = 20
 @export var automatic = false
 @export_range(0, 90) var recoil = 10
+@export_range(0, 10) var reload_speed = 0.5
 
 @onready var barrel: Node2D = $barrel
 @onready var sprite: Sprite2D = $barrel/Sprite2D
-@onready var bullet_point: Marker2D = $barrel/BulletPoint
+@onready var bullet_point: Marker2D = %BulletPoint
+@onready var reload_indicator: TextureProgressBar = %ReloadIndicator
 
 var player: Player :
 	get:
@@ -22,21 +24,41 @@ var ammo: int:
 		ammo = value
 		fired.emit()
 		recoil_gun()
+		if value == 0:
+			reload()
 
 var recoil_offset: float
+var reloading = false
+
+var reload_ind_offset: float
 
 signal fired
+
+func reload():
+	reloading = true
+	var tween = get_tree().create_tween()
+	tween.tween_property(reload_indicator, "value", 100, reload_speed)
+	await tween.finished
+	reloading = false
+	reload_indicator.value = 0
+	reserve -= clip - ammo
+	ammo = clip
+	
 
 func look_at_mouse():
 	look_at(get_global_mouse_position())
 	if cos(rotation) > 0:
 		sprite.flip_v = false
+		reload_indicator.position.y = reload_ind_offset - reload_indicator.size.y / 2
 	else:
 		sprite.flip_v = true
+		reload_indicator.position.y = -reload_ind_offset - reload_indicator.size.y / 2
 	rotation_degrees += recoil_offset
+
 
 func _ready() -> void:	
 	ammo = clip
+	reload_ind_offset = reload_indicator.position.y
 
 func shoot():
 	spawn_bullet(bullet, barrel.global_transform)
@@ -58,6 +80,7 @@ func recoil_gun():
 			.set_ease(Tween.EASE_OUT)\
 			.set_trans(Tween.TRANS_QUART)
 
+
 func spawn_bullet(new_bullet: PackedScene, bullet_transform: Transform2D):
 	var offset = bullet_point.position
 	if sprite.flip_v:
@@ -66,6 +89,7 @@ func spawn_bullet(new_bullet: PackedScene, bullet_transform: Transform2D):
 	var main_scene = get_tree().root.find_child("Main", true, false)
 	main_scene.rpc("add_bullet", new_bullet.get_path(), \
 			bullet_transform.translated_local(offset), player)
+
 
 func _process(delta: float) -> void:
 	if !player.synchronizer.is_multiplayer_authority():
