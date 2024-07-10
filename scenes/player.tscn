@@ -25,6 +25,9 @@ properties/3/replication_mode = 1
 properties/4/path = NodePath(".:username")
 properties/4/spawn = true
 properties/4/replication_mode = 1
+properties/5/path = NodePath("Avatar:look_dir")
+properties/5/spawn = true
+properties/5/replication_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6dq78"]
 size = Vector2(120, 100)
