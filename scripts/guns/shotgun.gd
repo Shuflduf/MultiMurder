@@ -22,6 +22,7 @@ func _ready() -> void:
 func shoot():
 	if ammo <= 0:
 		return
+		
 	for pellet in pellet_count:
 		var bullet_offset: float
 		
@@ -34,7 +35,7 @@ func shoot():
 				
 		var bullet_transform: Transform2D
 		bullet_transform = bullet_transform.rotated(deg_to_rad(bullet_offset) + rotation)
-		bullet_transform = bullet_transform.translated(barrel.global_position)
+		bullet_transform = bullet_transform.translated(hand.global_position)
 		spawn_bullet(bullet, bullet_transform)
 	ammo -= 1
 		

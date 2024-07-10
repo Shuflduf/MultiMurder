@@ -34,6 +34,7 @@ extends CharacterBody2D
 		weapon_parent.get_child(value).show()
 		weapon_parent.get_child(value).set_process(true)
 		update_hud()
+		
 @export var weapon_upsidedown: bool:
 	
 	set(value):
@@ -49,8 +50,11 @@ extends CharacterBody2D
 
 @export var synchronizer: MultiplayerSynchronizer
 @export var weapons: Array[PackedScene]
+@export var melee: PackedScene
 
-var current_weapon: Gun:
+#enum WeaponType {Gun, Melee}
+#var current_weapon_type: WeaponType
+var current_weapon: Weapon:
 	get: 
 		return weapon_parent.get_child(weapon_index)
 
@@ -78,23 +82,30 @@ func _ready() -> void:
 		camera.make_current()
 		hud.show()
 	
-	for gun in weapons:
-		weapon_parent.add_child(gun.instantiate())
-	for gun in weapon_parent.get_children():
-		gun.hide()
-		gun.fired.connect(func(): update_hud())
+	for weapon in weapons:
+		weapon_parent.add_child(weapon.instantiate())
+	weapon_parent.add_child(melee.instantiate())	
+	for weapon in weapon_parent.get_children():
+		weapon.hide()
+		weapon.fired.connect(func(): update_hud())
 	weapon_index = 0
-		
+	
 func _unhandled_input(event: InputEvent) -> void:
 	
-		
 	if event.is_action_pressed("switch_1"):
 		weapon_index = 0
 	elif event.is_action_pressed("switch_2"):
 		weapon_index = 1
+	elif event.is_action_pressed("switch_3"):
+		weapon_index = 2
+		
+func equip_melee():
+	pass		
+		
 		
 func update_hud():
-	hud.ammo = current_weapon.ammo
-	hud.clip = current_weapon.clip
-	hud.reserve = current_weapon.reserve
+	if current_weapon is Gun:
+		hud.ammo = current_weapon.ammo
+		hud.clip = current_weapon.clip
+		hud.reserve = current_weapon.reserve
 	hud.update_all()

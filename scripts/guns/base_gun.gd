@@ -1,5 +1,5 @@
 class_name Gun
-extends Node2D
+extends Weapon
 
 @export var bullet: PackedScene
 @export_range(0.01, 2) var fire_speed = 0.2
@@ -9,8 +9,8 @@ extends Node2D
 @export_range(0, 90) var recoil = 10
 @export_range(0, 10) var reload_speed = 0.5
 
-@onready var barrel: Node2D = $barrel
-@onready var sprite: Sprite2D = $barrel/Sprite2D
+#@onready var barrel: Node2D = $barrel
+#@onready var sprite: Sprite2D = $barrel/Sprite2D
 @onready var bullet_point: Marker2D = %BulletPoint
 @onready var reload_indicator: TextureProgressBar = %ReloadIndicator
 
@@ -33,8 +33,6 @@ var reloading = false
 
 var reload_ind_offset: float
 
-signal fired
-
 func reload():
 	reloading = true
 	var tween = get_tree().create_tween()
@@ -45,7 +43,6 @@ func reload():
 	reserve -= clip - ammo
 	ammo = clip
 	
-
 func look_at_mouse():
 	look_at(get_global_mouse_position())
 	if cos(rotation) > 0:
@@ -57,13 +54,14 @@ func look_at_mouse():
 	rotation_degrees += recoil_offset
 
 
+
 func _ready() -> void:	
 	ammo = clip
 	reload_ind_offset = reload_indicator.position.y
 
 func shoot():
 	if !ammo <= 0:
-		spawn_bullet(bullet, barrel.global_transform)
+		spawn_bullet(bullet, hand.global_transform)
 		ammo -= 1
 	
 	

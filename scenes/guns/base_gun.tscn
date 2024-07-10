@@ -1,28 +1,29 @@
 [gd_scene load_steps=5 format=3 uid="uid://30bi6olkqfgu"]
 
 [ext_resource type="Script" path="res://scripts/guns/base_gun.gd" id="1_0qmv6"]
+[ext_resource type="PackedScene" uid="uid://dx8s8xalqak7b" path="res://scenes/base_weapon.tscn" id="1_w7hfp"]
 [ext_resource type="PackedScene" uid="uid://cp13ouia7wa1w" path="res://scenes/bullet.tscn" id="2_016uv"]
-[ext_resource type="Texture2D" uid="uid://cepqbljkg6yn7" path="res://icon.svg" id="3_qjo8k"]
 [ext_resource type="Texture2D" uid="uid://d12bgrnl1heln" path="res://assets/sprites/circle.png" id="4_5bhgc"]
 
-[node name="Gun" type="Node2D"]
-z_index = 10
+[node name="Gun" instance=ExtResource("1_w7hfp")]
 script = ExtResource("1_0qmv6")
 bullet = ExtResource("2_016uv")
+fire_speed = 0.2
+clip = 6
+reserve = 20
+automatic = false
+recoil = 15
+reload_speed = 1.5
 
-[node name="barrel" type="Node2D" parent="."]
-position = Vector2(70, 0)
+[node name="Hand" parent="." index="0"]
+position = Vector2(84, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="barrel"]
-scale = Vector2(0.606719, 0.390625)
-texture = ExtResource("3_qjo8k")
+[node name="Flip" type="Node2D" parent="Hand" index="1"]
 
-[node name="Flip" type="Node2D" parent="barrel"]
-
-[node name="BulletPoint" type="Marker2D" parent="barrel/Flip"]
+[node name="BulletPoint" type="Marker2D" parent="Hand/Flip" index="0"]
 unique_name_in_owner = true
 
-[node name="ReloadIndicator" type="TextureProgressBar" parent="barrel/Flip"]
+[node name="ReloadIndicator" type="TextureProgressBar" parent="Hand/Flip" index="1"]
 unique_name_in_owner = true
 offset_left = -20.0
 offset_top = -64.0
@@ -31,3 +32,4 @@ offset_bottom = -26.0
 fill_mode = 4
 nine_patch_stretch = true
 texture_progress = ExtResource("4_5bhgc")
+metadata/_edit_use_anchors_ = true
