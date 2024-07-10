@@ -10,12 +10,21 @@ pellet_count = 5
 spread = 60
 neat_spread = true
 fire_speed = 0.4
+clip = 4
+reserve = 16
 recoil = 20
+reload_speed = 3.0
 
 [node name="Sprite2D" parent="barrel" index="0"]
 position = Vector2(47, 0)
 scale = Vector2(3.5, 3.5)
 texture = ExtResource("3_yn016")
 
-[node name="BulletPoint" parent="barrel" index="1"]
-position = Vector2(137, -28)
+[node name="BulletPoint" parent="barrel/Flip" index="0"]
+position = Vector2(136, -28)
+
+[node name="ReloadIndicator" parent="barrel/Flip" index="1"]
+offset_left = 100.0
+offset_top = -76.0
+offset_right = 138.0
+offset_bottom = -38.0
