@@ -29,7 +29,7 @@ properties/4/replication_mode = 1
 properties/5/path = NodePath("Avatar:look_dir")
 properties/5/spawn = true
 properties/5/replication_mode = 1
-properties/6/path = NodePath("Avatar:foot_pin")
+properties/6/path = NodePath(".:melee_pos")
 properties/6/spawn = true
 properties/6/replication_mode = 1
 

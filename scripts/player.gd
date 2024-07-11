@@ -34,7 +34,6 @@ extends CharacterBody2D
 		weapon_parent.get_child(value).show()
 		weapon_parent.get_child(value).set_process(true)
 		update_hud()
-		
 @export var weapon_upsidedown: bool:
 	
 	set(value):
@@ -47,6 +46,15 @@ extends CharacterBody2D
 	set(value):
 		health = value
 		health_bar.value = value
+@export var melee_pos: float:
+	set(value):
+		if weapon_parent == null:
+			await get_tree().process_frame
+		current_weapon.get_child(0).position.x = value
+	get:
+		return current_weapon.get_child(0).position.x
+		
+
 
 @export var synchronizer: MultiplayerSynchronizer
 @export var weapons: Array[PackedScene]
@@ -99,8 +107,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("switch_3"):
 		weapon_index = 2
 		
-func equip_melee():
-	pass		
+#func equip_melee():
+	#pass		
 		
 		
 func update_hud():

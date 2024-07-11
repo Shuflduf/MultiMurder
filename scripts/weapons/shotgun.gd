@@ -20,9 +20,6 @@ func _ready() -> void:
 	calculate_spread()
 
 func shoot():
-	if ammo <= 0:
-		return
-		
 	for pellet in pellet_count:
 		var bullet_offset: float
 		

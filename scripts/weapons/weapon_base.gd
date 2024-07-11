@@ -10,6 +10,10 @@ extends Node2D
 
 signal fired
 
+var player: Player :
+	get:
+		return get_parent().get_parent()
+
 func look_at_mouse():
 	look_at(get_global_mouse_position())
 	if flip_enabled:
@@ -17,3 +21,17 @@ func look_at_mouse():
 			sprite.flip_v = false
 		else:
 			sprite.flip_v = true
+
+func _process(_delta: float) -> void:
+	if !player.synchronizer.is_multiplayer_authority():
+		return
+	else:
+		if not automatic:
+			if Input.is_action_just_pressed("mouse_left"):
+				fire()
+		else:
+			if Input.is_action_pressed("mouse_left"):
+				fire()
+
+func fire():
+	pass

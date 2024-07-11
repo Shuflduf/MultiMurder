@@ -1,22 +1,14 @@
 class_name Gun
 extends Weapon
 
-@export var bullet: PackedScene
-
-@export var clip = 6
-@export var reserve = 20
-
-@export_range(0, 90) var recoil = 10
-@export_range(0, 10) var reload_speed = 0.5
-
-#@onready var barrel: Node2D = $barrel
-#@onready var sprite: Sprite2D = $barrel/Sprite2D
 @onready var bullet_point: Marker2D = %BulletPoint
 @onready var reload_indicator: TextureProgressBar = %ReloadIndicator
 
-var player: Player :
-	get:
-		return get_parent().get_parent()
+@export var bullet: PackedScene
+@export var clip = 6
+@export var reserve = 20
+@export_range(0, 90) var recoil = 10
+@export_range(0, 10) var reload_speed = 0.5
 
 var shoot_cooldown = fire_speed
 var ammo: int:
@@ -58,13 +50,21 @@ func look_at_mouse():
 
 
 func _ready() -> void:	
+	await get_tree().process_frame
 	ammo = clip
 	reload_ind_offset = reload_indicator.position.y
 
+func fire():
+	if shoot_cooldown > 0:
+		return
+	if ammo <= 0:
+		return
+	shoot_cooldown = fire_speed	
+	shoot()
+	
 func shoot():
-	if !ammo <= 0:
-		spawn_bullet(bullet, hand.global_transform)
-		ammo -= 1
+	spawn_bullet(bullet, hand.global_transform)
+	ammo -= 1
 	
 func recoil_gun():
 	var back_tween = get_tree().create_tween()
@@ -93,17 +93,6 @@ func spawn_bullet(new_bullet: PackedScene, bullet_transform: Transform2D):
 
 
 func _process(delta: float) -> void:
-	if !player.synchronizer.is_multiplayer_authority():
-		return
+	super(delta)
 	if shoot_cooldown >= 0:
 		shoot_cooldown -= delta
-	else:
-		if not automatic:
-			if Input.is_action_just_pressed("mouse_left"):
-				shoot()
-				shoot_cooldown = fire_speed
-		else:
-			if Input.is_action_pressed("mouse_left"):
-				shoot()
-				shoot_cooldown = fire_speed
-		

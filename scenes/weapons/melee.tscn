@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b45ghbmqumlpg"]
+[gd_scene load_steps=4 format=3 uid="uid://b45ghbmqumlpg"]
 
 [ext_resource type="Script" path="res://scripts/weapons/melee.gd" id="1_tc0td"]
 [ext_resource type="Texture2D" uid="uid://cepqbljkg6yn7" path="res://icon.svg" id="2_qoi3m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2mtdj"]
+size = Vector2(50, 50)
 
 [node name="Melee" type="Node2D"]
 script = ExtResource("1_tc0td")
@@ -12,3 +15,12 @@ position = Vector2(108, 0)
 [node name="Sprite2D" type="Sprite2D" parent="Hand"]
 scale = Vector2(0.593239, 0.593239)
 texture = ExtResource("2_qoi3m")
+
+[node name="HitBox" type="Area2D" parent="Hand"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/HitBox"]
+shape = SubResource("RectangleShape2D_2mtdj")
+
+[connection signal="body_entered" from="Hand/HitBox" to="." method="_on_hit_box_body_entered"]
