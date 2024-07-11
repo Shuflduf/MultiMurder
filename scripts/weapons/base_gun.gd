@@ -2,10 +2,10 @@ class_name Gun
 extends Weapon
 
 @export var bullet: PackedScene
-@export_range(0.01, 2) var fire_speed = 0.2
+
 @export var clip = 6
 @export var reserve = 20
-@export var automatic = false
+
 @export_range(0, 90) var recoil = 10
 @export_range(0, 10) var reload_speed = 0.5
 
@@ -23,8 +23,10 @@ var ammo: int:
 	set(value):
 		ammo = value
 		fired.emit()
+		
 		if value != clip:
 			recoil_gun()
+			
 		if value == 0:
 			reload()
 

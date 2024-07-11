@@ -8,10 +8,8 @@
 [node name="Gun" instance=ExtResource("1_n6w03")]
 script = ExtResource("2_dtd4a")
 bullet = ExtResource("3_vgxu8")
-fire_speed = 0.2
 clip = 6
 reserve = 20
-automatic = false
 recoil = 15
 reload_speed = 1.5
 

@@ -9,11 +9,11 @@ script = ExtResource("2_lmoeq")
 pellet_count = 5
 spread = 60
 neat_spread = true
-fire_speed = 0.4
 clip = 4
 reserve = 16
 recoil = 20
 reload_speed = 3.0
+fire_speed = 0.4
 
 [node name="Hand" parent="." index="0"]
 position = Vector2(124, 0)

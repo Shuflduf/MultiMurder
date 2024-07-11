@@ -7,12 +7,12 @@
 [node name="AK" instance=ExtResource("1_s75kv")]
 script = ExtResource("2_thmyf")
 spread = 20
-fire_speed = 0.1
 clip = 30
 reserve = 90
-automatic = true
 recoil = 3
 reload_speed = 3.0
+automatic = true
+fire_speed = 0.1
 
 [node name="Hand" parent="." index="0"]
 position = Vector2(106, 0)

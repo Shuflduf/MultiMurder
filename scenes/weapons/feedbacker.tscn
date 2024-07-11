@@ -5,6 +5,7 @@
 
 [node name="Feedbacker" instance=ExtResource("1_iico5")]
 flip_enabled = false
+fire_speed = 0.5
 
 [node name="Sprite2D" parent="Hand" index="0"]
 rotation = 1.57079
