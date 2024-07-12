@@ -8,9 +8,11 @@
 script = ExtResource("2_72f63")
 damage = 10
 flip_enabled = false
-fire_speed = 0.5
 
 [node name="Sprite2D" parent="Hand" index="0"]
 rotation = 1.57079
 scale = Vector2(3, 3)
 texture = ExtResource("2_t2mp6")
+
+[node name="HitBox" parent="Hand" index="1"]
+collision_mask = 6

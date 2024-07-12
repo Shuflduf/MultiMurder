@@ -23,15 +23,7 @@ func fire():
 		
 	await get_tree().create_timer(fire_speed / 2).timeout
 	
-	if hitbox.get_overlapping_bodies() != []:
-		for body in hitbox.get_overlapping_bodies():
-			if body is Player:
-				#print("AH")
-				#if body == player:
-					#continue 
-				main_scene.rpc("hurt_player", body.name, damage)
-				#body.health -= damage
-				#body.update_hud()
+	deal_damage()
 	
 	await tween.finished
 	punching = false
@@ -40,11 +32,11 @@ func _ready() -> void:
 	rest_pos = hand.position.x
 	main_scene = get_tree().root.find_child("Main", true, false)
 
-#func _on_hit_box_body_entered(body: Node2D) -> void:
-	#if !punching:
-		#return
-	#if body is Player:
-		#if body == player:
-			#return
-		#body.health -= damage
-		
+func deal_damage():
+	if hitbox.get_overlapping_bodies() != []:
+		for body in hitbox.get_overlapping_bodies():
+			if body is Player:
+				if body == player:
+					continue 
+				main_scene.rpc("hurt_player", body.name, damage)
+				return

@@ -46,6 +46,4 @@ func hurt_player(player_name: StringName, damage):
 		if player.name != player_name:
 			continue
 		player.health -= damage
-	#var player_idx = multiplayer.get_peers().find(int(player_name))
-	#multiplayer.get_peers()[player_idx].health -= damage
-		#print(player)
+		return
