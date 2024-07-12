@@ -22,5 +22,3 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hand/HitBox"]
 shape = SubResource("RectangleShape2D_2mtdj")
-
-[connection signal="body_entered" from="Hand/HitBox" to="." method="_on_hit_box_body_entered"]

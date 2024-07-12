@@ -9,6 +9,8 @@ extends Weapon
 var rest_pos: float
 var punching = false
 
+var main_scene: Node2D
+
 func fire():
 	if punching:
 		return
@@ -18,19 +20,25 @@ func fire():
 		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CIRC)
 	tween.tween_property(hand, "position:x", rest_pos, fire_speed)\
 		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CIRC)
+		
 	await get_tree().create_timer(fire_speed / 2).timeout
+	
 	if hitbox.get_overlapping_bodies() != []:
 		for body in hitbox.get_overlapping_bodies():
 			if body is Player:
-				if body == player:
-					continue 
-				body.health -= damage
-				body.update_hud()
+				#print("AH")
+				#if body == player:
+					#continue 
+				main_scene.rpc("hurt_player", body.name, damage)
+				#body.health -= damage
+				#body.update_hud()
 	
+	await tween.finished
 	punching = false
 	
 func _ready() -> void:
 	rest_pos = hand.position.x
+	main_scene = get_tree().root.find_child("Main", true, false)
 
 #func _on_hit_box_body_entered(body: Node2D) -> void:
 	#if !punching:

@@ -72,7 +72,8 @@ func recoil_gun():
 	if sprite.flip_v:
 		offset *= -1
 	
-	back_tween.tween_property(self, "recoil_offset", rotation + deg_to_rad(recoil * 100 * offset), fire_speed / 3)\
+	back_tween.tween_property(self, "recoil_offset"\
+			, rotation + deg_to_rad(recoil * 100 * offset), fire_speed / 3)\
 			.set_ease(Tween.EASE_OUT)\
 			.set_trans(Tween.TRANS_QUART)
 	await back_tween.finished

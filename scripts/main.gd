@@ -1,6 +1,5 @@
 extends Node2D
 
-
 @onready var player_spawner: MultiplayerSpawner = $MultiplayerSpawner
 @onready var bullet_parent: Node2D = $BulletParent
 
@@ -37,3 +36,16 @@ func add_bullet(bullet_scene_path: String, bullet_transform, bullet_owner):
 	new_bullet.global_transform = bullet_transform
 	new_bullet.bullet_owner = bullet_owner
 	bullet_parent.add_child(new_bullet, true)
+
+
+@rpc("any_peer", "call_local", "reliable", 0)
+func hurt_player(player_name: StringName, damage):
+	for player in get_children():
+		if !player is Player:
+			continue
+		if player.name != player_name:
+			continue
+		player.health -= damage
+	#var player_idx = multiplayer.get_peers().find(int(player_name))
+	#multiplayer.get_peers()[player_idx].health -= damage
+		#print(player)

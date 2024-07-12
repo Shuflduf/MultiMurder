@@ -44,6 +44,9 @@ extends CharacterBody2D
 		return current_weapon.sprite.flip_v
 @export var health: = 100:
 	set(value):
+		if health_bar == null:
+			await ready
+		#print(name)
 		health = value
 		health_bar.value = value
 @export var melee_pos: float:
@@ -54,14 +57,10 @@ extends CharacterBody2D
 	get:
 		return current_weapon.get_child(0).position.x
 		
-
-
 @export var synchronizer: MultiplayerSynchronizer
 @export var weapons: Array[PackedScene]
 @export var melee: PackedScene
 
-#enum WeaponType {Gun, Melee}
-#var current_weapon_type: WeaponType
 var current_weapon: Weapon:
 	get: 
 		return weapon_parent.get_child(weapon_index)
@@ -107,9 +106,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("switch_3"):
 		weapon_index = 2
 		
-#func equip_melee():
-	#pass		
-		
 		
 func update_hud():
 	if current_weapon is Gun:
@@ -117,3 +113,4 @@ func update_hud():
 		hud.clip = current_weapon.clip
 		hud.reserve = current_weapon.reserve
 	hud.update_all()
+
