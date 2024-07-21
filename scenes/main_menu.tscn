@@ -71,33 +71,6 @@ expand_to_text_length = true
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Address1" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-max_value = 255.0
-rounded = true
-suffix = "."
-
-[node name="Address2" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-max_value = 255.0
-rounded = true
-suffix = "."
-
-[node name="Address3" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-max_value = 255.0
-rounded = true
-suffix = "."
-
-[node name="Address4" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-max_value = 255.0
-rounded = true
-
 [node name="Port" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 min_value = 25.0

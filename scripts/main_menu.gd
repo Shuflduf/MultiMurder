@@ -6,10 +6,6 @@ extends Control
 
 func _on_join_pressed() -> void:
 	Global.current_type = Global.gameType.Join
-	Global.address = str(%Address1.value) + "."\
-			+ str(%Address2.value) + "."\
-			+ str(%Address3.value) + "."\
-			+ str(%Address4.value) + "."
 			
 	transition()
 	
