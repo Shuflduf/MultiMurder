@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://scripts/move_c.gd" id="2_2ophi"]
 [ext_resource type="PackedScene" uid="uid://bj2ddbtirkem" path="res://scenes/weapons/revolver.tscn" id="2_ctdp0"]
 [ext_resource type="PackedScene" uid="uid://b4321xovw1xhi" path="res://scenes/weapons/ak.tscn" id="3_ny6kh"]
+[ext_resource type="PackedScene" uid="uid://b45ghbmqumlpg" path="res://scenes/weapons/melee.tscn" id="4_h7rw5"]
 [ext_resource type="PackedScene" uid="uid://dtd46rnlr7en4" path="res://scenes/red_avatar.tscn" id="4_neo6e"]
-[ext_resource type="PackedScene" uid="uid://mun50baoo2i" path="res://scenes/weapons/feedbacker.tscn" id="4_vl8pq"]
 [ext_resource type="PackedScene" uid="uid://bchpxrh8u3cih" path="res://scenes/hud.tscn" id="6_52mw6"]
 [ext_resource type="LabelSettings" uid="uid://qhfcbntgbe61" path="res://resources/heading3.tres" id="7_b2ah7"]
 [ext_resource type="FontFile" uid="uid://7ubvujxllbci" path="res://assets/KodeMono.ttf" id="8_ld7ak"]
@@ -33,8 +33,9 @@ properties/6/path = NodePath(".:melee_pos")
 properties/6/spawn = true
 properties/6/replication_mode = 1
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6dq78"]
-size = Vector2(120, 100)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eilay"]
+radius = 49.0
+height = 120.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4wdkm"]
 bg_color = Color(1, 0, 0, 1)
@@ -55,7 +56,7 @@ collision_layer = 2
 script = ExtResource("1_2vvyq")
 synchronizer = NodePath("MultiplayerSynchronizer")
 weapons = Array[PackedScene]([ExtResource("2_ctdp0"), ExtResource("3_ny6kh")])
-melee = ExtResource("4_vl8pq")
+melee = ExtResource("4_h7rw5")
 
 [node name="Weapon" type="Node2D" parent="."]
 
@@ -66,7 +67,8 @@ replication_config = SubResource("SceneReplicationConfig_kwgq4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10)
-shape = SubResource("RectangleShape2D_6dq78")
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_eilay")
 
 [node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("2_2ophi")

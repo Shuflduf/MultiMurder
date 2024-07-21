@@ -8,6 +8,8 @@ size = Vector2(128, 128)
 
 [node name="Melee" type="Node2D"]
 script = ExtResource("1_tc0td")
+damage = 30
+fire_speed = 0.4
 
 [node name="Hand" type="Node2D" parent="."]
 position = Vector2(108, 0)

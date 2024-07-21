@@ -71,24 +71,55 @@ expand_to_text_length = true
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
+[node name="Address1" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 255.0
+rounded = true
+suffix = "."
+
+[node name="Address2" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 255.0
+rounded = true
+suffix = "."
+
+[node name="Address3" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 255.0
+rounded = true
+suffix = "."
+
+[node name="Address4" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 255.0
+rounded = true
+
 [node name="Port" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 min_value = 25.0
 max_value = 9999.0
-value = 9999.0
+value = 6000.0
 rounded = true
+prefix = ":"
 
-[node name="Host" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Host" type="Button" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_jw5ke")
 theme_override_font_sizes/font_size = 31
 text = "Host"
 
-[node name="Join" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Join" type="Button" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_jw5ke")
 theme_override_font_sizes/font_size = 31
 text = "Join"
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Host" to="." method="_on_host_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Join" to="." method="_on_join_pressed"]

@@ -7,6 +7,12 @@ extends CharacterBody2D
 @export_range(0, 100, 1) var damage = 10
 
 var bullet_owner: Player
+var bullet_rotation:
+	set(value):
+		rotation = value
+		update_direction(value)
+	get:
+		return rotation
 
 func _ready() -> void:
 	update_direction(rotation)
